@@ -120,27 +120,23 @@ namespace imbentaryo_client
         {
             int id = item.ItemId;
 
-            if (id == Resource.Id.nav_camera)
-            {
-                // Handle the camera action
-            }
-            else if (id == Resource.Id.nav_gallery)
-            {
-                this.ShowFragment(this.addItem);
-            }
-            else if (id == Resource.Id.nav_slideshow)
+            if (id == Resource.Id.nav_home)
             {
                 this.ShowFragment(this.itemsView);
             }
-            else if (id == Resource.Id.nav_manage)
+            else if (id == Resource.Id.nav_items_view)
+            {
+                this.ShowFragment(this.itemsView);
+            }
+            else if (id == Resource.Id.nav_add_item)
+            {
+                this.ShowFragment(this.addItem);
+            }
+            else if (id == Resource.Id.nav_add_item_group)
             {
 
             }
-            else if (id == Resource.Id.nav_share)
-            {
-
-            }
-            else if (id == Resource.Id.nav_send)
+            else if (id == Resource.Id.nav_item_groups_view)
             {
 
             }

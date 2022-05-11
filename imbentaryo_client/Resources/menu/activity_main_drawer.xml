@@ -3,36 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+	<group android:checkableBehavior="single">
+		<item
+			android:id="@+id/nav_home"
+			android:icon="@drawable/ic_menu_camera"
+			android:title="Home" />
+	</group>
+	
+	<item android:title="Items">
+		<menu>
+			<group android:checkableBehavior="single">
+				<item
+					android:id="@+id/nav_items_view"
+					android:icon="@drawable/ic_menu_camera"
+					android:title="Inventoried Items" />
+				<item
+					android:id="@+id/nav_add_item"
+					android:icon="@drawable/ic_menu_gallery"
+					android:title="Add Item" />
+			</group>
+		</menu>
+	</item>
 
-    <item android:title="Communicate">
+
+	<item android:title="Item Groups">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
+			<group android:checkableBehavior="single">
+				<item
+					android:id="@+id/nav_add_item_group"
+					android:icon="@drawable/ic_menu_send"
+					android:title="Add Item Group" />
+				<item
+					android:id="@+id/nav_item_groups_view"
+					android:icon="@drawable/ic_menu_share"
+					android:title="Item Groups" />
+			</group>
+		</menu>
     </item>
 
 </menu>
