@@ -5,6 +5,8 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using imbentaryo_client.Http;
+using imbentaryo_client.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace imbentaryo_client.Fragments
         // spinner value holder
         List<string> groupNames;
         List<string> groupIds;
-        public override void OnCreate(Bundle savedInstanceState)
+        public override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -48,6 +50,9 @@ namespace imbentaryo_client.Fragments
 
             groupNames.Add("Abc5");
             groupIds.Add("Abc5id");
+
+            ItemGroupService igs = new ItemGroupService();
+            List<ItemGroup> itemGroups = await igs.GetItemGroups();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
