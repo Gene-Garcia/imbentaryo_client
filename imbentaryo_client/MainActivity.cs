@@ -11,6 +11,32 @@ using Google.Android.Material.FloatingActionButton;
 using Google.Android.Material.Navigation;
 using Google.Android.Material.Snackbar;
 
+/*
+ * nav_header_main.xml
+ * Is the header layout of the drawer
+ *
+ * activity_main.xml
+ * is the main layout instantiated by MainActivity.
+ * it calls/includes the app_bar_main
+ *
+ * app_bar_main.xml
+ * creates the google toolbar and FAB.
+ * it calls/includes the app_content_main
+ *
+ * content_main.xml
+ * is the layout where we usually put the components of the main activity.
+ *
+ * Resource.Id.toolbar
+ * & Resource.Id.fab
+ * located in app_bar_main.xml
+ *
+ * Resource.Id.drawer_layout
+ * is the actual parent container in activity_main.xml
+ *
+ * Resource.Id.nav_view
+ * located in activity_main.xml and is the container to the drawer itself that appears and disappears 
+ *
+ */
 namespace imbentaryo_client
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
@@ -21,6 +47,7 @@ namespace imbentaryo_client
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
+
             Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
@@ -47,23 +74,6 @@ namespace imbentaryo_client
             {
                 base.OnBackPressed();
             }
-        }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
-            return true;
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            int id = item.ItemId;
-            if (id == Resource.Id.action_settings)
-            {
-                return true;
-            }
-
-            return base.OnOptionsItemSelected(item);
         }
 
         private void FabOnClick(object sender, EventArgs eventArgs)
