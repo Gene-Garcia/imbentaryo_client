@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imbentaryo_client", "imbentaryo_client\imbentaryo_client.csproj", "{6AFD2A45-1B19-4923-AAD5-9E371AEF5757}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AFD2A45-1B19-4923-AAD5-9E371AEF5757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AFD2A45-1B19-4923-AAD5-9E371AEF5757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AFD2A45-1B19-4923-AAD5-9E371AEF5757}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6AFD2A45-1B19-4923-AAD5-9E371AEF5757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AFD2A45-1B19-4923-AAD5-9E371AEF5757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AFD2A45-1B19-4923-AAD5-9E371AEF5757}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B4492FF-A593-4EB7-896E-E3A15B596716}
+	EndGlobalSection
+EndGlobal
