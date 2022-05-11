@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.OS;
 using Android.Runtime;
@@ -10,6 +11,7 @@ using AndroidX.DrawerLayout.Widget;
 using Google.Android.Material.FloatingActionButton;
 using Google.Android.Material.Navigation;
 using Google.Android.Material.Snackbar;
+using imbentaryo_client.Fragments;
 
 /*
  * nav_header_main.xml
@@ -42,6 +44,19 @@ namespace imbentaryo_client
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
+
+        // Start Fragment related components
+        AndroidX.Fragment.App.Fragment addItem;
+        AndroidX.Fragment.App.Fragment itemsView;
+
+        // keeps hold of current shown fragment
+        AndroidX.Fragment.App.Fragment activeFragment;
+
+        // so that in back button, we will be able to push and pop to updated the active fragment
+        // helps in showing the old active fragment when back button is pressed.
+        Stack<AndroidX.Fragment.App.Fragment> stackFragment;
+        // End
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -61,6 +76,17 @@ namespace imbentaryo_client
 
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
+
+            // fragments configuration - AndroidX
+            addItem = new FragmentAddItem();
+            itemsView = new FragmentItemsView();
+            var trans = SupportFragmentManager.BeginTransaction();
+            trans.Add(Resource.Id.fragmentContainer, addItem, "Add_Item");
+            trans.Add(Resource.Id.fragmentContainer, itemsView, "Items_View");
+            this.activeFragment = itemsView;
+            trans.Hide(addItem);
+            trans.Commit();
+            this.stackFragment = new Stack<AndroidX.Fragment.App.Fragment>();
         }
 
         public override void OnBackPressed()
@@ -69,6 +95,13 @@ namespace imbentaryo_client
             if(drawer.IsDrawerOpen(GravityCompat.Start))
             {
                 drawer.CloseDrawer(GravityCompat.Start);
+            }
+            else if (SupportFragmentManager.BackStackEntryCount > 0)
+            {
+                SupportFragmentManager.PopBackStack();
+
+                // Clicking back will reopen last Fragment
+                this.activeFragment = this.stackFragment.Pop();
             }
             else
             {
@@ -93,11 +126,11 @@ namespace imbentaryo_client
             }
             else if (id == Resource.Id.nav_gallery)
             {
-
+                this.ShowFragment(this.addItem);
             }
             else if (id == Resource.Id.nav_slideshow)
             {
-
+                this.ShowFragment(this.itemsView);
             }
             else if (id == Resource.Id.nav_manage)
             {
@@ -116,11 +149,27 @@ namespace imbentaryo_client
             drawer.CloseDrawer(GravityCompat.Start);
             return true;
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void ShowFragment(AndroidX.Fragment.App.Fragment fragment)
+        {
+            var transaction = SupportFragmentManager.BeginTransaction();
+
+            transaction.Hide(this.activeFragment);
+            transaction.Show(fragment);
+            transaction.AddToBackStack(null);
+            transaction.Commit();
+
+            // we record the current fragment because it will be replaced.
+            this.stackFragment.Push(this.activeFragment);
+
+            this.activeFragment = fragment;
         }
     }
 }
