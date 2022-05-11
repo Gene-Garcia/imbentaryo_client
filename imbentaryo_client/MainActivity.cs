@@ -45,18 +45,6 @@ namespace imbentaryo_client
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
 
-        // Start Fragment related components
-        AndroidX.Fragment.App.Fragment addItem;
-        AndroidX.Fragment.App.Fragment itemsView;
-
-        // keeps hold of current shown fragment
-        AndroidX.Fragment.App.Fragment activeFragment;
-
-        // so that in back button, we will be able to push and pop to updated the active fragment
-        // helps in showing the old active fragment when back button is pressed.
-        Stack<AndroidX.Fragment.App.Fragment> stackFragment;
-        // End
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -78,15 +66,10 @@ namespace imbentaryo_client
             navigationView.SetNavigationItemSelectedListener(this);
 
             // fragments configuration - AndroidX
-            addItem = new FragmentAddItem();
-            itemsView = new FragmentItemsView();
-            var trans = SupportFragmentManager.BeginTransaction();
-            trans.Add(Resource.Id.fragmentContainer, addItem, "Add_Item");
-            trans.Add(Resource.Id.fragmentContainer, itemsView, "Items_View");
-            this.activeFragment = itemsView;
-            trans.Hide(addItem);
-            trans.Commit();
-            this.stackFragment = new Stack<AndroidX.Fragment.App.Fragment>();
+            var tx = this.SupportFragmentManager.BeginTransaction();
+            tx.Add(Resource.Id.fragmentContainer, new FragmentAddItem());
+            tx.Commit();
+
         }
 
         public override void OnBackPressed()
@@ -96,13 +79,13 @@ namespace imbentaryo_client
             {
                 drawer.CloseDrawer(GravityCompat.Start);
             }
-            else if (SupportFragmentManager.BackStackEntryCount > 0)
-            {
-                SupportFragmentManager.PopBackStack();
+            //else if (SupportFragmentManager.BackStackEntryCount > 0)
+            //{
+            //    SupportFragmentManager.PopBackStack();
 
-                // Clicking back will reopen last Fragment
-                this.activeFragment = this.stackFragment.Pop();
-            }
+            //    // Clicking back will reopen last Fragment
+            //    //this.activeFragment = this.stackFragment.Pop();
+            //}
             else
             {
                 base.OnBackPressed();
@@ -118,19 +101,22 @@ namespace imbentaryo_client
 
         public bool OnNavigationItemSelected(IMenuItem item)
         {
+            AndroidX.Fragment.App.Fragment fragment = null;
+
             int id = item.ItemId;
 
             if (id == Resource.Id.nav_home)
             {
-                this.ShowFragment(this.itemsView);
+                fragment = new FragmentItemsView();
             }
             else if (id == Resource.Id.nav_items_view)
             {
-                this.ShowFragment(this.itemsView);
+                fragment = new FragmentItemsView();
             }
             else if (id == Resource.Id.nav_add_item)
             {
-                this.ShowFragment(this.addItem);
+                fragment = new FragmentAddItem();
+                fragment.Arguments = this.PrepareAddItemArguments();
             }
             else if (id == Resource.Id.nav_add_item_group)
             {
@@ -140,6 +126,12 @@ namespace imbentaryo_client
             {
 
             }
+
+            var tx = this.SupportFragmentManager.BeginTransaction();
+            tx.Replace(Resource.Id.fragmentContainer, fragment);
+            // add the transaction to the backstack to allow users to navigate back
+            tx.AddToBackStack(null);
+            tx.Commit();
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             drawer.CloseDrawer(GravityCompat.Start);
@@ -153,20 +145,24 @@ namespace imbentaryo_client
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        private void ShowFragment(AndroidX.Fragment.App.Fragment fragment)
+        private Bundle PrepareAddItemArguments()
         {
-            var transaction = SupportFragmentManager.BeginTransaction();
+            // populate by making api request
+            //ItemGroupService igs = new ItemGroupService();
+            //List<ItemGroup> itemGroups = await igs.GetItemGroups();
 
-            transaction.Hide(this.activeFragment);
-            transaction.Show(fragment);
-            transaction.AddToBackStack(null);
-            transaction.Commit();
+            //foreach (ItemGroup itemGroup in itemGroups)
+            //{
+            //    groupNames.Add(itemGroup.Name);
+            //    groupIds.Add(itemGroup.Id);
+            //}
 
-            // we record the current fragment because it will be replaced.
-            this.stackFragment.Push(this.activeFragment);
+            Bundle args = new Bundle();
+            args.PutString("test", "testvalue");
 
-            this.activeFragment = fragment;
+            return args;
         }
+
     }
 }
 
