@@ -34,25 +34,6 @@ namespace imbentaryo_client.Fragments
             // Create your fragment here
             groupNames = new List<string>();
             groupIds = new List<string>();
-
-            // populate by making api request
-            groupNames.Add("Abc1");
-            groupIds.Add("Abc1id");
-
-            groupNames.Add("Abc2");
-            groupIds.Add("Abc2id");
-
-            groupNames.Add("Abc3");
-            groupIds.Add("Abc3id");
-
-            groupNames.Add("Abc4");
-            groupIds.Add("Abc4id");
-
-            groupNames.Add("Abc5");
-            groupIds.Add("Abc5id");
-
-            ItemGroupService igs = new ItemGroupService();
-            List<ItemGroup> itemGroups = await igs.GetItemGroups();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -69,12 +50,26 @@ namespace imbentaryo_client.Fragments
             this.remarksEditText = view.FindViewById<EditText>(Resource.Id.remarksEditText);
             this.addItemBtn = view.FindViewById<Button>(Resource.Id.addItemBtn);
 
+            return view;
+        }
+
+        public async override void OnResume()
+        {
+            base.OnResume();
+
+            // populate by making api request
+            ItemGroupService igs = new ItemGroupService();
+            List<ItemGroup> itemGroups = await igs.GetItemGroups();
+
+            foreach (ItemGroup itemGroup in itemGroups)
+            {
+                groupNames.Add(itemGroup.Name);
+                groupIds.Add(itemGroup.Id);
+            }
+
             // populate spinner
             ArrayAdapter spinnerAdapter = new ArrayAdapter<string>(this.Activity, Resource.Layout.support_simple_spinner_dropdown_item, this.groupNames);
             itemGroupDropDown.Adapter = spinnerAdapter;
-
-
-            return view;
         }
     }
 }

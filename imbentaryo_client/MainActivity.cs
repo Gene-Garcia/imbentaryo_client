@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Runtime;
@@ -12,6 +13,9 @@ using Google.Android.Material.FloatingActionButton;
 using Google.Android.Material.Navigation;
 using Google.Android.Material.Snackbar;
 using imbentaryo_client.Fragments;
+using imbentaryo_client.Http;
+using imbentaryo_client.Models;
+using Newtonsoft.Json;
 
 /*
  * nav_header_main.xml
@@ -116,7 +120,6 @@ namespace imbentaryo_client
             else if (id == Resource.Id.nav_add_item)
             {
                 fragment = new FragmentAddItem();
-                fragment.Arguments = this.PrepareAddItemArguments();
             }
             else if (id == Resource.Id.nav_add_item_group)
             {
@@ -144,25 +147,6 @@ namespace imbentaryo_client
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-        private Bundle PrepareAddItemArguments()
-        {
-            // populate by making api request
-            //ItemGroupService igs = new ItemGroupService();
-            //List<ItemGroup> itemGroups = await igs.GetItemGroups();
-
-            //foreach (ItemGroup itemGroup in itemGroups)
-            //{
-            //    groupNames.Add(itemGroup.Name);
-            //    groupIds.Add(itemGroup.Id);
-            //}
-
-            Bundle args = new Bundle();
-            args.PutString("test", "testvalue");
-
-            return args;
-        }
-
     }
 }
 
