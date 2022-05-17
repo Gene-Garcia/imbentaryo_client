@@ -23,10 +23,13 @@ namespace imbentaryo_client.Fragments
         EditText remarksEditText;
         Button addItemBtn;
 
-
-        // spinner value holder
+        // spinner values and keys holder
         List<string> groupNames;
         List<string> groupIds;
+
+        // selected spinner key holder
+        string selectedItemGroupKey;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -52,6 +55,7 @@ namespace imbentaryo_client.Fragments
 
             // event handlers
             this.itemGroupDropDown.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemGroupSelected);
+            this.addItemBtn.Click += this.InsertItem_Click;
 
             return view;
         }
@@ -79,6 +83,66 @@ namespace imbentaryo_client.Fragments
             Spinner spinner = (Spinner)sender;
             string toast = "Item Position " + spinner.GetItemAtPosition(e.Position) + ". Value " + this.groupNames[e.Position] + ". Key " + this.groupIds[e.Position];
             Toast.MakeText(this.Activity, toast, ToastLength.Long).Show();
+
+            // asssign the selected item group key
+            this.selectedItemGroupKey = this.groupIds[e.Position];
+        }
+
+        private async void InsertItem_Click(object sender, EventArgs e)
+        {
+            ItemService itemService = new ItemService();
+            if (ValidateFields())
+            {
+                // build model
+                Item item = new Item()
+                {
+                    Name = this.itemNameEditText.Text,
+                    UnitPrice = 0, // forgot to implement this one
+                    Remarks = this.remarksEditText.Text,
+                    GroupId = this.selectedItemGroupKey
+                };
+
+                HttpMessage message = await itemService.InsertItem(item);
+
+                Toast.MakeText(this.Activity, message.StatusCode + ". " + message.Message, ToastLength.Long).Show();
+
+                if (message.StatusCode == System.Net.HttpStatusCode.Created.ToString())
+                {
+                    // reset form
+                    // this.ResetFragment();
+
+                    this.itemNameEditText.Text = "";
+                    this.remarksEditText.Text = "";
+                    this.stockCountEditText.Text = "0";
+                }
+            }
+        }
+
+        private bool ValidateFields()
+        {
+            bool isValid = true;
+            if (string.IsNullOrEmpty(itemNameEditText.Text))
+            {
+                isValid = false;
+                Toast.MakeText(this.Activity, "Item Name is required", ToastLength.Short).Show();
+            }
+            else if (string.IsNullOrEmpty(this.selectedItemGroupKey))
+            {
+                isValid = false;
+                Toast.MakeText(this.Activity, "Item group is required. Select one from the dropdown.", ToastLength.Short).Show();
+            }
+            else if (string.IsNullOrEmpty(stockCountEditText.Text))
+            {
+                isValid = false;
+                Toast.MakeText(this.Activity, "If there is no available stock, put 0.", ToastLength.Short).Show();
+            }
+            //else if (string.IsNullOrEmpty(remarksEditText.Text))
+            //{
+            //    isValid = false;
+            //    Toast.MakeText(this.Activity, "Item Name is required", ToastLength.Short).Show();
+            //}
+
+            return isValid;
         }
     }
 }
