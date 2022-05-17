@@ -27,7 +27,7 @@ namespace imbentaryo_client.Fragments
         // spinner value holder
         List<string> groupNames;
         List<string> groupIds;
-        public override async void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -50,6 +50,9 @@ namespace imbentaryo_client.Fragments
             this.remarksEditText = view.FindViewById<EditText>(Resource.Id.remarksEditText);
             this.addItemBtn = view.FindViewById<Button>(Resource.Id.addItemBtn);
 
+            // event handlers
+            this.itemGroupDropDown.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemGroupSelected);
+
             return view;
         }
 
@@ -60,7 +63,6 @@ namespace imbentaryo_client.Fragments
             // populate by making api request
             ItemGroupService igs = new ItemGroupService();
             List<ItemGroup> itemGroups = await igs.GetItemGroups();
-
             foreach (ItemGroup itemGroup in itemGroups)
             {
                 groupNames.Add(itemGroup.Name);
@@ -70,6 +72,13 @@ namespace imbentaryo_client.Fragments
             // populate spinner
             ArrayAdapter spinnerAdapter = new ArrayAdapter<string>(this.Activity, Resource.Layout.support_simple_spinner_dropdown_item, this.groupNames);
             itemGroupDropDown.Adapter = spinnerAdapter;
+        }
+
+        private void Spinner_ItemGroupSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            string toast = "Item Position " + spinner.GetItemAtPosition(e.Position) + ". Value " + this.groupNames[e.Position] + ". Key " + this.groupIds[e.Position];
+            Toast.MakeText(this.Activity, toast, ToastLength.Long).Show();
         }
     }
 }
