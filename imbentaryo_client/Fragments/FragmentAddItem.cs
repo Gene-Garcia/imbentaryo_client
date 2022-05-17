@@ -19,6 +19,7 @@ namespace imbentaryo_client.Fragments
         // form components
         EditText itemNameEditText;
         Spinner itemGroupDropDown;
+        EditText unitPriceEditText;
         EditText stockCountEditText;
         EditText remarksEditText;
         Button addItemBtn;
@@ -49,6 +50,7 @@ namespace imbentaryo_client.Fragments
             // itemNameEditTxt itemGroupDropDown stockCountEditText remarksEditText addItemBtn
             this.itemNameEditText = view.FindViewById<EditText>(Resource.Id.itemNameEditText);
             this.itemGroupDropDown = view.FindViewById<Spinner>(Resource.Id.itemGroupDropDown);
+            this.unitPriceEditText = view.FindViewById<EditText>(Resource.Id.unitPriceEditText);
             this.stockCountEditText = view.FindViewById<EditText>(Resource.Id.stockCountEditText);
             this.remarksEditText = view.FindViewById<EditText>(Resource.Id.remarksEditText);
             this.addItemBtn = view.FindViewById<Button>(Resource.Id.addItemBtn);
@@ -97,9 +99,10 @@ namespace imbentaryo_client.Fragments
                 Item item = new Item()
                 {
                     Name = this.itemNameEditText.Text,
-                    UnitPrice = 0, // forgot to implement this one
+                    UnitPrice = float.Parse(this.unitPriceEditText.Text),
                     Remarks = this.remarksEditText.Text,
-                    GroupId = this.selectedItemGroupKey
+                    GroupId = this.selectedItemGroupKey,
+                    Stock = int.Parse(this.stockCountEditText.Text)
                 };
 
                 HttpMessage message = await itemService.InsertItem(item);
@@ -114,6 +117,7 @@ namespace imbentaryo_client.Fragments
                     this.itemNameEditText.Text = "";
                     this.remarksEditText.Text = "";
                     this.stockCountEditText.Text = "0";
+                    this.unitPriceEditText.Text = "0";
                 }
             }
         }
@@ -130,6 +134,11 @@ namespace imbentaryo_client.Fragments
             {
                 isValid = false;
                 Toast.MakeText(this.Activity, "Item group is required. Select one from the dropdown.", ToastLength.Short).Show();
+            }
+            else if (string.IsNullOrEmpty(unitPriceEditText.Text))
+            {
+                isValid = false;
+                Toast.MakeText(this.Activity, "Minimum value for price 0.", ToastLength.Short).Show();
             }
             else if (string.IsNullOrEmpty(stockCountEditText.Text))
             {

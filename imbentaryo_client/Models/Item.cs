@@ -31,5 +31,8 @@ namespace imbentaryo_client.Models
 
         [JsonProperty("date_added")]
         public string DateAdded { get; set; }
+
+        [JsonProperty("stock")]
+        public int Stock { get; set; } // will only be used in creating new item record
     }
 }
