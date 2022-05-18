@@ -61,6 +61,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\ItemInventoryAdapter.cs" />
     <Compile Include="Fragments\FragmentAddItem.cs" />
     <Compile Include="Fragments\FragmentItemsView.cs" />
     <Compile Include="Http\ItemGroupService.cs" />
@@ -145,6 +146,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_items_view.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\_item_inventory_template.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
