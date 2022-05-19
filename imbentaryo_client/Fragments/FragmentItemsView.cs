@@ -6,7 +6,9 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using imbentaryo_client.Adapters;
+using imbentaryo_client.Http;
 using imbentaryo_client.Models;
+using imbentaryo_client.Models.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,189 +37,19 @@ namespace imbentaryo_client.Fragments
         }
 
 
-        public override void OnResume()
+        public override async void OnResume()
         {
             base.OnResume();
 
+            // call api
+            ItemService service = new ItemService();
+            List<ItemAPIModel> itemAPIModels =  await service.GetItems();
+            List<Inventory> items = ModelConverter.ConvertToItem(itemAPIModels);
+
             // set up adapter
-            ItemInventoryAdapter adapter = new ItemInventoryAdapter(this.Activity, GetItems());
+            ItemInventoryAdapter adapter = new ItemInventoryAdapter(this.Activity, items);
             this.inventoryItemsListView.Adapter = adapter;
         }
 
-        private List<Item> GetItems()
-        {
-
-            List<Item> items = new List<Item>();
-
-            items.Add(new Item()
-            {
-                Name = "Test",
-                DateAdded = "5/18/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 2",
-                DateAdded = "4/5/2022",
-                Stock = 54
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 3",
-                DateAdded = "12/11/2022",
-                Stock = 50
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 4",
-                DateAdded = "1/7/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test",
-                DateAdded = "5/18/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 2",
-                DateAdded = "4/5/2022",
-                Stock = 54
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 3",
-                DateAdded = "12/11/2022",
-                Stock = 50
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 4",
-                DateAdded = "1/7/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test",
-                DateAdded = "5/18/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 2",
-                DateAdded = "4/5/2022",
-                Stock = 54
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 3",
-                DateAdded = "12/11/2022",
-                Stock = 50
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 4",
-                DateAdded = "1/7/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test",
-                DateAdded = "5/18/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 2",
-                DateAdded = "4/5/2022",
-                Stock = 54
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 3",
-                DateAdded = "12/11/2022",
-                Stock = 50
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 4",
-                DateAdded = "1/7/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test",
-                DateAdded = "5/18/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 2",
-                DateAdded = "4/5/2022",
-                Stock = 54
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 3",
-                DateAdded = "12/11/2022",
-                Stock = 50
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 4",
-                DateAdded = "1/7/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test",
-                DateAdded = "5/18/2022",
-                Stock = 15
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 2",
-                DateAdded = "4/5/2022",
-                Stock = 54
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 3",
-                DateAdded = "12/11/2022",
-                Stock = 50
-            });
-
-            items.Add(new Item()
-            {
-                Name = "Test 4",
-                DateAdded = "1/7/2022",
-                Stock = 15
-            });
-
-            return items;
-        }
     }
 }

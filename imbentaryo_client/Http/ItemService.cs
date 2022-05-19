@@ -46,6 +46,22 @@ namespace imbentaryo_client.Http
 
             return message;
         }
+
+        public async Task<List<ItemAPIModel>> GetItems()
+        {
+            Uri uri = new Uri(this.uri + "/all");
+
+            List<ItemAPIModel> items = new List<ItemAPIModel>();
+
+            HttpResponseMessage response = await this.client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                items = JsonConvert.DeserializeObject<List<ItemAPIModel>>(content);
+            }
+
+            return items;
+        }
     }
 
 
@@ -60,5 +76,24 @@ namespace imbentaryo_client.Http
         public string ItemGroupId { get; set; }
         public float UnitPrice { get; set; }
         public string Remarks { get; set; }
+    }
+
+    /*
+     * A model with properties similar to what
+     * the API /all returns.
+     * 
+     * We will manually convert each property to respective
+     * item and inventory model
+     */
+    internal class ItemAPIModel
+    {
+        [JsonProperty("item_id")]
+        public string ItemId { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("updated")]
+        public string Updated { get; set; }
+        [JsonProperty("quantity")]
+        public string Quantity { get; set; }
     }
 }

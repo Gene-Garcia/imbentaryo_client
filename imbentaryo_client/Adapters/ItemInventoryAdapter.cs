@@ -14,13 +14,10 @@ namespace imbentaryo_client.Adapters
 {
     internal class ItemInventoryAdapter : BaseAdapter
     {
-
-        Context context;
-
         private Activity activity;
-        private List<Item> items;
+        private List<Inventory> items;
 
-        public ItemInventoryAdapter(Activity activity, List<Item> items)
+        public ItemInventoryAdapter(Activity activity, List<Inventory> items)
         {
             this.activity = activity;
             this.items = items;
@@ -47,9 +44,9 @@ namespace imbentaryo_client.Adapters
             TextView inventoryDate = view.FindViewById<TextView>(Resource.Id.inventoryDate);
 
             //fill in your items
-            itemName.Text = this.items[position].Name;
-            stockCount.Text = this.items[position].Stock.ToString();
-            inventoryDate.Text = this.items[position].DateAdded;
+            itemName.Text = this.items[position].Item.Name;
+            stockCount.Text = this.items[position].Quantity.ToString();
+            inventoryDate.Text = this.items[position].Updated;
 
             return view;
         }

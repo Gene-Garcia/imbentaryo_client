@@ -41,7 +41,5 @@ namespace imbentaryo_client.Models
         public int Stock { get; set; } // will only be used in creating new item record
         public int Quantity { get; set; }
 
-
-        // Item Group Properties
     }
 }

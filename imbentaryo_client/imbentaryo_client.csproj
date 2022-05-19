@@ -72,6 +72,7 @@
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemGroup.cs" />
+    <Compile Include="Models\Utilities\ModelConverter.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
