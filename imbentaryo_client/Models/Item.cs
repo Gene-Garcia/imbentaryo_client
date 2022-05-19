@@ -32,7 +32,16 @@ namespace imbentaryo_client.Models
         [JsonProperty("date_added")]
         public string DateAdded { get; set; }
 
+        // Foreign Tables
+        public ItemGroup ItemGroup { get; set; }
+
+        // Inventory table properties
+
         [JsonProperty("stock")]
         public int Stock { get; set; } // will only be used in creating new item record
+        public int Quantity { get; set; }
+
+
+        // Item Group Properties
     }
 }

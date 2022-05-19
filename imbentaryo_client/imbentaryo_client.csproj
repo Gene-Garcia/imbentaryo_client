@@ -69,6 +69,7 @@
     <Compile Include="Http\Service.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\HttpMessage.cs" />
+    <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemGroup.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
