@@ -47,4 +47,18 @@ namespace imbentaryo_client.Http
             return message;
         }
     }
+
+
+    /*
+     * An item model containing properties for input fields
+     * in the add item view
+     */
+    internal class AddItemViewModel
+    {
+        public string Name { get; set; }
+        public int Stock { get; set; }
+        public string ItemGroupId { get; set; }
+        public float UnitPrice { get; set; }
+        public string Remarks { get; set; }
+    }
 }
