@@ -71,10 +71,15 @@ namespace imbentaryo_client.Http
      */
     internal class AddItemViewModel
     {
+        [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("stock")]
         public int Stock { get; set; }
+        [JsonProperty("group_id")]
         public string ItemGroupId { get; set; }
+        [JsonProperty("unit_price")]
         public float UnitPrice { get; set; }
+        [JsonProperty("remarks")]
         public string Remarks { get; set; }
     }
 
