@@ -29,13 +29,16 @@ namespace imbentaryo_client.Http
         {
             List<ItemGroup> itemGroups = new List<ItemGroup>();
 
-            Uri uri = new Uri(this.uri + "/all");
-
-            HttpResponseMessage response = await client.GetAsync(uri);
-            if (response.IsSuccessStatusCode)
+            using (this.client = new HttpClient())
             {
-                string content = await response.Content.ReadAsStringAsync();
-                itemGroups = JsonConvert.DeserializeObject<List<ItemGroup>>(content);
+                Uri uri = new Uri(this.uri + "/all");
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    itemGroups = JsonConvert.DeserializeObject<List<ItemGroup>>(content);
+                }
             }
 
             return itemGroups;

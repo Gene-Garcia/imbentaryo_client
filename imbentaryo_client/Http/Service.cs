@@ -20,7 +20,7 @@ namespace imbentaryo_client.Http
 
         public Service()
         {
-            this.client = new HttpClient();
+            
         }
     }
 }

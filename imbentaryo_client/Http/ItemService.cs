@@ -27,37 +27,46 @@ namespace imbentaryo_client.Http
 
         public async Task<HttpMessage> InsertItem(AddItemViewModel item)
         {
-            Uri uri = new Uri(this.uri + "/add");
+            HttpMessage message = new HttpMessage();
 
-            // serialize item model to json content
-            string jsonItem = JsonConvert.SerializeObject(item);
+            using(this.client = new HttpClient())
+            {
+                Uri uri = new Uri(this.uri + "/add");
 
-            // api request content with headers
-            StringContent content = new StringContent(jsonItem, Encoding.UTF8, "application/json");
+                // serialize item model to json content
+                string jsonItem = JsonConvert.SerializeObject(item);
 
-            // make request
-            HttpResponseMessage response = await this.client.PostAsync(uri, content);
+                // api request content with headers
+                StringContent content = new StringContent(jsonItem, Encoding.UTF8, "application/json");
 
-            string rawMessage = await response.Content.ReadAsStringAsync();
+                // make request
+                HttpResponseMessage response = await this.client.PostAsync(uri, content);
 
-            HttpMessage message = JsonConvert.DeserializeObject<HttpMessage>(rawMessage);
+                string rawMessage = await response.Content.ReadAsStringAsync();
 
-            message.StatusCode = response.StatusCode.ToString();
+                message = JsonConvert.DeserializeObject<HttpMessage>(rawMessage);
+
+                message.StatusCode = response.StatusCode.ToString();
+            }
 
             return message;
         }
 
         public async Task<List<ItemAPIModel>> GetItems()
         {
-            Uri uri = new Uri(this.uri + "/all");
-
             List<ItemAPIModel> items = new List<ItemAPIModel>();
 
-            HttpResponseMessage response = await this.client.GetAsync(uri);
-            if (response.IsSuccessStatusCode)
+            using (this.client = new HttpClient())
             {
-                string content = await response.Content.ReadAsStringAsync();
-                items = JsonConvert.DeserializeObject<List<ItemAPIModel>>(content);
+                Uri uri = new Uri(this.uri + "/all");
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    items = JsonConvert.DeserializeObject<List<ItemAPIModel>>(content);
+                }
+
             }
 
             return items;
