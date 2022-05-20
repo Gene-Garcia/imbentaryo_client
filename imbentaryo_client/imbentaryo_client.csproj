@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Adapters\ItemInventoryAdapter.cs" />
     <Compile Include="Fragments\FragmentAddItem.cs" />
+    <Compile Include="Fragments\FragmentItemGroupsView.cs" />
     <Compile Include="Fragments\FragmentItemsView.cs" />
     <Compile Include="Http\ItemGroupService.cs" />
     <Compile Include="Http\ItemService.cs" />
@@ -153,6 +154,19 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\_item_inventory_template.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_item_groups_view.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-v21\ic_double_right_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\_item_group_template.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

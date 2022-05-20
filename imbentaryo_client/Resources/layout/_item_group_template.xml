@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <TextView
+        android:text="{Item Group Name}"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/itemGroupName"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"/>
+
+    <ImageView
+        android:src="@drawable/ic_double_right_arrow"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/imageView1"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>
