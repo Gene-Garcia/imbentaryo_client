@@ -25,7 +25,7 @@ namespace imbentaryo_client.Http
             this.uri = END_POINT + HIGH_PATH;
         }
 
-        public async Task<HttpMessage> InsertItem(Item item)
+        public async Task<HttpMessage> InsertItem(AddItemViewModel item)
         {
             Uri uri = new Uri(this.uri + "/add");
 

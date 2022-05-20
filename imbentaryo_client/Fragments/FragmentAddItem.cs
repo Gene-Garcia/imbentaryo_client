@@ -96,12 +96,12 @@ namespace imbentaryo_client.Fragments
             if (ValidateFields())
             {
                 // build model
-                Item item = new Item()
+                AddItemViewModel item = new AddItemViewModel()
                 {
                     Name = this.itemNameEditText.Text,
                     UnitPrice = float.Parse(this.unitPriceEditText.Text),
                     Remarks = this.remarksEditText.Text,
-                    GroupId = this.selectedItemGroupKey,
+                    ItemGroupId = this.selectedItemGroupKey,
                     Stock = int.Parse(this.stockCountEditText.Text)
                 };
 
