@@ -64,6 +64,7 @@
     <Compile Include="Adapters\ItemGroupAdapter.cs" />
     <Compile Include="Adapters\ItemInventoryAdapter.cs" />
     <Compile Include="Fragments\FragmentAddItem.cs" />
+    <Compile Include="Fragments\FragmentAddItemGroup.cs" />
     <Compile Include="Fragments\FragmentItemGroupsView.cs" />
     <Compile Include="Fragments\FragmentItemsView.cs" />
     <Compile Include="Http\ItemGroupService.cs" />
@@ -168,6 +169,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\_item_group_template.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_add_item_group.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

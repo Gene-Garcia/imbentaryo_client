@@ -44,5 +44,32 @@ namespace imbentaryo_client.Http
             return itemGroups;
 
         }
+
+        public async Task<HttpMessage> InsertItemGroup(ItemGroup itemGroup)
+        {
+            HttpMessage message = new HttpMessage();
+
+            using(this.client = new HttpClient())
+            {
+                Uri uri = new Uri(this.uri + "/add");
+
+                // convert to json object
+                string jsonItem = JsonConvert.SerializeObject(itemGroup);
+
+                // add headers
+                StringContent content = new StringContent(jsonItem, Encoding.UTF8, "application/json");
+
+                // request
+                HttpResponseMessage response = await this.client.PostAsync(uri, content);
+
+                string rawMessage = await response.Content.ReadAsStringAsync();
+
+                message = JsonConvert.DeserializeObject<HttpMessage>(rawMessage);
+
+                message.StatusCode = response.StatusCode.ToString();
+            }
+
+            return message;
+        }
     }
 }

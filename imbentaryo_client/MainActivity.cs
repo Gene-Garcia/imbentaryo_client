@@ -123,7 +123,7 @@ namespace imbentaryo_client
             }
             else if (id == Resource.Id.nav_add_item_group)
             {
-                
+                fragment = new FragmentAddItemGroup();
             }
             else if (id == Resource.Id.nav_item_groups_view)
             {
