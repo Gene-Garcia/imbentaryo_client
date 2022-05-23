@@ -82,10 +82,6 @@ namespace imbentaryo_client.Fragments
 
         private void Spinner_ItemGroupSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            Spinner spinner = (Spinner)sender;
-            string toast = "Item Position " + spinner.GetItemAtPosition(e.Position) + ". Value " + this.groupNames[e.Position] + ". Key " + this.groupIds[e.Position];
-            Toast.MakeText(this.Activity, toast, ToastLength.Long).Show();
-
             // asssign the selected item group key
             this.selectedItemGroupKey = this.groupIds[e.Position];
         }
