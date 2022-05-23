@@ -61,6 +61,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\ItemGroupAdapter.cs" />
     <Compile Include="Adapters\ItemInventoryAdapter.cs" />
     <Compile Include="Fragments\FragmentAddItem.cs" />
     <Compile Include="Fragments\FragmentItemGroupsView.cs" />

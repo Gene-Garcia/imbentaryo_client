@@ -123,11 +123,11 @@ namespace imbentaryo_client
             }
             else if (id == Resource.Id.nav_add_item_group)
             {
-
+                
             }
             else if (id == Resource.Id.nav_item_groups_view)
             {
-
+                fragment = new FragmentItemGroupsView();
             }
 
             var tx = this.SupportFragmentManager.BeginTransaction();
