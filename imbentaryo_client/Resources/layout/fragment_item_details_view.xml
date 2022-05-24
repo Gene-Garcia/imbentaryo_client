@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/container_padding">
+
+    <TextView
+        android:text="{item name}"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/itemNameTxt"
+        android:gravity="center"
+        android:layout_marginVertical="@dimen/input_group_spacing"/>
+
+    <RelativeLayout
+        android:layout_below="@+id/itemNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inventoryQuantityGroup"
+        android:layout_marginVertical="@dimen/input_group_spacing">
+
+        <TextView
+            android:text="Inventory Quantity"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/textView1" />
+
+        <TextView
+            android:text="{#} in stock"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/inventoryStockCount"
+            android:layout_below="@id/textView1"
+            android:textColor="#212121"
+            android:background="@drawable/border"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="8dp"/>
+
+        <TextView
+            android:text="updated last {date}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/inventoryUpdateDate"
+            android:layout_below="@id/inventoryStockCount"
+            android:gravity="right"
+            android:textColor="#8E8B82"
+            android:textSize="13dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/inventoryQuantityGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemGroupGroup"
+        android:layout_marginVertical="@dimen/input_group_spacing">
+
+        <TextView
+            android:text="Item Group"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/textView2" />
+
+        <TextView
+            android:text="{Item Group name}"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemGroupName"
+            android:layout_below="@id/textView2"
+            android:textColor="#212121"
+            android:background="@drawable/border"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="8dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/itemGroupGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/remarksGroup"
+        android:layout_marginVertical="@dimen/input_group_spacing">
+
+        <TextView
+            android:text="Item Remarks"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/textView3" />
+
+        <TextView
+            android:text="{Any remarks}"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemRemark"
+            android:layout_below="@id/textView3"
+            android:textColor="#212121"
+            android:background="@drawable/border"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="8dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:text="Item added on {date}"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemDateAdded"
+        android:layout_below="@+id/remarksGroup"
+        android:layout_marginVertical="@dimen/input_group_spacing"/>
+
+
+
+</RelativeLayout>
