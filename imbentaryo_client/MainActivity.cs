@@ -5,6 +5,7 @@ using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
 using AndroidX.Core.View;
@@ -46,7 +47,7 @@ using Newtonsoft.Json;
 namespace imbentaryo_client
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
+    internal class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -55,7 +56,7 @@ namespace imbentaryo_client
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            AndroidX.AppCompat.Widget.Toolbar toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
             FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
@@ -146,6 +147,30 @@ namespace imbentaryo_client
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        /*
+         * Function methods are fragment callables which is designed
+         * to change the current active fragment. Event happen on item
+         * list click
+         */
+        public void StartItemInventoryDetailView(string itemId)
+        {
+
+        }
+
+        public void StartItemGroupDetailView(string groupId)
+        {
+
+        }
+
+        /*
+         * Start FragmentItemsView with a payload/bundle/parameter of
+         * which item group only to show
+         */
+        public void StartItemInventoriesOfGroup(string groupId)
+        {
+
         }
     }
 }
