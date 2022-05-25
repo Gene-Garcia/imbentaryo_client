@@ -27,11 +27,22 @@ namespace imbentaryo_client.Models.Utilities
                     Name = itemApi.Name
                 };
 
+                // there will be times that quantiy is null so parsing it will raise an error
+                int parsedQuantity = 0;
+                try
+                {
+                    parsedQuantity = int.Parse(itemApi.Quantity);
+                }
+                catch (Exception ex)
+                {
+
+                }
+
                 Inventory tempInventory = new Inventory()
                 {
                     Item = tempItem,
                     Updated = itemApi.Updated,
-                    Quantity = int.Parse(itemApi.Quantity)
+                    Quantity = parsedQuantity
                 };
 
                 items.Add(tempInventory);
