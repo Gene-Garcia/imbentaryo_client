@@ -71,8 +71,63 @@ namespace imbentaryo_client.Http
 
             return items;
         }
+
+        public async Task<ItemInventoryModel> GetItemDetails(string itemId)
+        {
+            ItemInventoryModel item = null;
+
+            using (this.client = new HttpClient())
+            {
+                Uri uri = new Uri(this.uri + "/one/" + itemId);
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    item = JsonConvert.DeserializeObject<ItemInventoryModel>(content);
+                }
+            }
+
+            return item;
+        }
     }
 
+    /*
+     * An item-inventory-item_group model
+     *
+     */
+    internal class ItemInventoryModel
+    {
+        [JsonProperty("item_id")]
+        public string ItemId { get; set; }
+
+        [JsonProperty("group_id")]
+        public string GroupId { get; set; }
+
+        [JsonProperty("inventory_id")]
+        public string InventoryId { get; set; }
+
+        [JsonProperty("name")]
+        public string ItemName { get; set; }
+
+        [JsonProperty("group_name")]
+        public string GroupName { get; set; }
+
+        [JsonProperty("Remarks")]
+        public string Remarks { get; set; }
+
+        [JsonProperty("quantity")]
+        public string Quantity { get; set; }
+
+        [JsonProperty("unit_price")]
+        public string Price { get; set; }
+
+        [JsonProperty("updated")]
+        public string DateUpdated { get; set; }
+
+        [JsonProperty("date_added")]
+        public string DateAdded { get; set; }
+    }
 
     /*
      * An item model containing properties for input fields
