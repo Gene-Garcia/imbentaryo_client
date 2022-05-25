@@ -170,5 +170,6 @@
             android:id="@+id/saveUpdateBtn"
             android:layout_below="@+id/itemDateAdded"/>
 
-    </RelativeLayoyut>
+    </RelativeLayout>
+
 </androidx.core.widget.NestedScrollView>

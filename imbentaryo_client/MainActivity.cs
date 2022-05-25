@@ -156,7 +156,18 @@ namespace imbentaryo_client
          */
         public void StartItemInventoryDetailView(string itemId)
         {
+            AndroidX.Fragment.App.Fragment fragment = new FragmentItemDetailsView();
 
+            // configure argument
+            Bundle args = new Bundle();
+            args.PutString("itemId", itemId);
+            fragment.Arguments = args;
+
+            var tx = this.SupportFragmentManager.BeginTransaction();
+            tx.Replace(Resource.Id.fragmentContainer, fragment);
+            // add the transaction to the backstack to allow users to navigate back
+            tx.AddToBackStack(null);
+            tx.Commit();
         }
 
         public void StartItemGroupDetailView(string groupId)

@@ -38,7 +38,6 @@ namespace imbentaryo_client.Fragments
             return view;
         }
 
-
         public override async void OnResume()
         {
             base.OnResume();
@@ -57,7 +56,7 @@ namespace imbentaryo_client.Fragments
         // Item list view on lick
         private void ItemInventory_Click(object sender, AdapterView.ItemClickEventArgs e)
         {
-            //((MainActivity)this.Activity).FragmentCallable(this.items[e.Position]);
+            ((MainActivity)this.Activity).StartItemInventoryDetailView(this.items[e.Position].Item.Id);
         }
 
     }
