@@ -65,6 +65,7 @@
     <Compile Include="Adapters\ItemInventoryAdapter.cs" />
     <Compile Include="Fragments\FragmentAddItem.cs" />
     <Compile Include="Fragments\FragmentAddItemGroup.cs" />
+    <Compile Include="Fragments\FragmentItemDetailsView.cs" />
     <Compile Include="Fragments\FragmentItemGroupsView.cs" />
     <Compile Include="Fragments\FragmentItemsView.cs" />
     <Compile Include="Http\ItemGroupService.cs" />

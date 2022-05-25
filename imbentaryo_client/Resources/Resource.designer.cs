@@ -3879,7 +3879,7 @@ namespace imbentaryo_client
 			public const int itemPriceGroup = 2131230872;
 			
 			// aapt resource value: 0x7F080099
-			public const int itemRemarkEditText = 2131230873;
+			public const int itemRemarksEditText = 2131230873;
 			
 			// aapt resource value: 0x7F08009A
 			public const int item_touch_helper_previous_elevation = 2131230874;
