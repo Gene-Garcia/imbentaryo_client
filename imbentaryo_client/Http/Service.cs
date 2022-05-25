@@ -14,8 +14,8 @@ namespace imbentaryo_client.Http
 {
     internal class Service
     {
-        //protected const string END_POINT = "http://192.168.1.14:3001/v1";
-        protected const string END_POINT = "https://imbentaryo.herokuapp.com/v1";
+        protected const string END_POINT = "http://192.168.1.8:3001/v1";
+        //protected const string END_POINT = "https://imbentaryo.herokuapp.com/v1";
 
         protected HttpClient client; 
 
