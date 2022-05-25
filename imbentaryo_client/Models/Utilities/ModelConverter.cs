@@ -53,6 +53,17 @@ namespace imbentaryo_client.Models.Utilities
 
         public static Inventory ConvertToInventory(ItemInventoryModel data)
         {
+            // not everytime inventory record will be present for some reason
+            int parsedQuantity = 0;
+            // just to catch any unforseen error in parsing price
+            float parsedPrice = 0;
+            try
+            {
+                parsedPrice = float.Parse(data.Price);
+                parsedQuantity = int.Parse(data.Quantity);
+            }
+            catch (Exception ex) { }
+
             ItemGroup group = new ItemGroup()
             {
                 Id = data.GroupId,
@@ -62,7 +73,7 @@ namespace imbentaryo_client.Models.Utilities
             {
                 Id = data.ItemId,
                 Name = data.ItemName,
-                UnitPrice = float.Parse(data.Price),
+                UnitPrice = parsedPrice,
                 Remarks = data.Remarks,
                 GroupId = data.GroupId,
                 DateAdded = data.DateAdded,
@@ -72,7 +83,7 @@ namespace imbentaryo_client.Models.Utilities
             {
                 Id = data.InventoryId,
                 ItemId = data.ItemId,
-                Quantity = int.Parse(data.Quantity),
+                Quantity = parsedQuantity,
                 Updated = data.DateUpdated,
                 Item = tempItem
             };
