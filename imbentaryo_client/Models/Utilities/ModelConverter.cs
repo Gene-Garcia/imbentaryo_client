@@ -50,5 +50,34 @@ namespace imbentaryo_client.Models.Utilities
 
             return items;
         }
+
+        public static Inventory ConvertToInventory(ItemInventoryModel data)
+        {
+            ItemGroup group = new ItemGroup()
+            {
+                Id = data.GroupId,
+                Name = data.GroupName
+            };
+            Item tempItem = new Item()
+            {
+                Id = data.ItemId,
+                Name = data.ItemName,
+                UnitPrice = float.Parse(data.Price),
+                Remarks = data.Remarks,
+                GroupId = data.GroupId,
+                DateAdded = data.DateAdded,
+                ItemGroup = group
+            };
+            Inventory inventory = new Inventory()
+            {
+                Id = data.InventoryId,
+                ItemId = data.ItemId,
+                Quantity = int.Parse(data.Quantity),
+                Updated = data.DateUpdated,
+                Item = tempItem
+            };
+
+            return inventory;
+        }
     }
 }
