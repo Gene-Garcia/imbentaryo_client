@@ -111,7 +111,7 @@
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="38dp"
                 android:id="@+id/itemGroupNameSpinner"
                 android:layout_below="@id/textView2"
                 android:textColor="#212121"

@@ -17,8 +17,10 @@ namespace imbentaryo_client.Fragments
 {
     public class FragmentItemDetailsView : AndroidX.Fragment.App.Fragment
     {
+        // data passed when fragment is created
         string itemIdArgs;
 
+        // model with the necessary data to be displayed in our ui
         Inventory itemInventory;
 
         // spinner value
@@ -72,6 +74,20 @@ namespace imbentaryo_client.Fragments
             this.itemInventory = ModelConverter.ConvertToInventory(data);
 
             this.ShowItemDetails();
+
+            // spinner configurations
+            ItemGroupService itemGroupService = new ItemGroupService();
+            this.itemGroups = await itemGroupService.GetItemGroups();
+
+            // we must first mutate the itemGroups so that the item group of the current is the first in the list
+            itemGroups.Remove(itemGroups.Where(m => m.Id == this.itemInventory.Item.GroupId).FirstOrDefault());
+            itemGroups.Insert(0, this.itemInventory.Item.ItemGroup);
+
+            ArrayAdapter itemGroupAdapter = new ArrayAdapter<string>(this.Activity, Resource.Layout.support_simple_spinner_dropdown_item, itemGroups.Select(m => m.Name).ToList());
+            
+            this.itemGroupNameSpinner.Adapter = itemGroupAdapter;
+
+            this.itemGroupNameSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(this.ItemGroup_ItemGroupSelected);
         }
 
         private void ShowItemDetails()
@@ -86,5 +102,15 @@ namespace imbentaryo_client.Fragments
             itemRemarksEditText.Text = this.itemInventory.Item.Remarks;
             itemDateAdded.Text = "Item added on " + this.itemInventory.Item.DateAdded;
         }
+
+        private void ItemGroup_ItemGroupSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            // instead of using a placeholder variable, we can directly update the item group object inside the inventory.item
+            ItemGroup selected = this.itemGroups[e.Position];
+
+            // update the inventory object
+            this.itemInventory.Item.ItemGroup = selected;
+        }
+
     }
 }
