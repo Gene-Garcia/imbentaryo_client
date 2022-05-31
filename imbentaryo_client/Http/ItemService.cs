@@ -52,13 +52,23 @@ namespace imbentaryo_client.Http
             return message;
         }
 
-        public async Task<List<ItemAPIModel>> GetItems()
+        public async Task<List<ItemAPIModel>> GetItems(string? itemGroupId)
         {
             List<ItemAPIModel> items = new List<ItemAPIModel>();
 
             using (this.client = new HttpClient())
             {
-                Uri uri = new Uri(this.uri + "/all");
+                Uri uri;
+                if (string.IsNullOrEmpty(itemGroupId))
+                {
+                    // we will query all of the items
+                    uri = new Uri(this.uri + "/all");
+                } 
+                else
+                {
+                    // query all items that are part of a specific group
+                    uri = new Uri(this.uri + "/all/group/" + itemGroupId);
+                }
 
                 HttpResponseMessage response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
