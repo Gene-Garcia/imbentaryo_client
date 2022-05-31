@@ -57,6 +57,8 @@ namespace imbentaryo_client.Fragments
             this.itemDateAdded = view.FindViewById<TextView>(Resource.Id.itemDateAdded);
             this.saveUpdateBtn = view.FindViewById<Button>(Resource.Id.saveUpdateBtn);
 
+            this.saveUpdateBtn.Click += this.SaveUpdate_Click;
+
             return view;
         }
 
@@ -112,5 +114,83 @@ namespace imbentaryo_client.Fragments
             this.itemInventory.Item.ItemGroup = selected;
         }
 
+        private bool Validate()
+        {
+            if (string.IsNullOrEmpty(itemNameEditText.Text))
+            {
+                Toast.MakeText(this.Activity, "Item name cannot be empty", ToastLength.Short).Show();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(inventoryQuantityEditText.Text))
+            {
+                Toast.MakeText(this.Activity, "Inventory quantity be empty", ToastLength.Short).Show();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(itemPriceEditText.Text))
+            {
+                Toast.MakeText(this.Activity, "Inventory quantity be empty", ToastLength.Short).Show();
+                return false;
+            }
+            else
+            {
+                // check for numerical values
+                int parsedQty;
+                if (!int.TryParse(inventoryQuantityEditText.Text, out parsedQty) || parsedQty < 0)
+                {
+                    Toast.MakeText(this.Activity, "Inventory quantity cannot be a negative value", ToastLength.Short).Show();
+                    return false;
+                }
+
+                float parsedPrice;
+                if (!float.TryParse(itemPriceEditText.Text, out parsedPrice) || parsedPrice < 0)
+                {
+                    Toast.MakeText(this.Activity, "Price cannot be a negative value", ToastLength.Short).Show();
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        private async void SaveUpdate_Click(object sender, EventArgs e)
+        {
+            if (this.Validate())
+            {
+                //Toast.MakeText(this.Activity, "Save updated success", ToastLength.Short).Show();
+                // build models
+
+                // parsing numerical value with error handling
+                float parsedPrice = this.itemInventory.Item.UnitPrice; // default price
+                float.TryParse(itemPriceEditText.Text.Trim(), out parsedPrice);
+                int parsedQty = this.itemInventory.Quantity; // default quantity
+                int.TryParse(inventoryQuantityEditText.Text.Trim(), out parsedQty);
+
+                ItemUpdateModel itemModel = new ItemUpdateModel()
+                {
+                    ItemId = this.itemInventory.Item.Id,
+                    Name = this.itemNameEditText.Text.Trim(),
+                    UnitPrice = parsedPrice,
+                    Remarks = this.itemRemarksEditText.Text.Trim(),
+                    GroupId = this.itemInventory.Item.ItemGroup.Id // updated every spinner item click
+                };
+                InventoryUpdateModel inventoryModel = new InventoryUpdateModel()
+                {
+                    InventoryId = this.itemInventory.Id,
+                    Quantity = parsedQty
+                };
+
+                InventoryService service = new InventoryService();
+
+                HttpMessage message = await service.UpdateItemInventory(itemModel, inventoryModel);
+
+                Toast.MakeText(this.Activity, message.StatusCode + ". " + message.Message, ToastLength.Long).Show();
+
+                if (message.StatusCode == System.Net.HttpStatusCode.Created.ToString())
+                {
+                    // return back to inventory items list
+                    ((MainActivity)this.Activity).ChangeFragment(new FragmentItemsView());
+                }
+            }
+        }
     }
 }
