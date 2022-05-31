@@ -71,5 +71,24 @@ namespace imbentaryo_client.Http
 
             return message;
         }
+
+        public async Task<ItemGroup> GetItemGroup(string groupId)
+        {
+            ItemGroup itemGroup = new ItemGroup();
+
+            using (this.client = new HttpClient())
+            {
+                Uri uri = new Uri(this.uri + "/one/" + groupId);
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    itemGroup = JsonConvert.DeserializeObject<ItemGroup>(content);
+                }
+            }
+
+            return itemGroup;
+        }
     }
 }
