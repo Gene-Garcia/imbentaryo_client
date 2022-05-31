@@ -18,11 +18,22 @@ namespace imbentaryo_client.Fragments
 {
     public class FragmentItemsView : AndroidX.Fragment.App.Fragment
     {
+        // the group id intent/bundle passed which will tell what items of group to get and show
+        string itemGroupId;
+        // a value passed through
+        string groupName;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
+            try
+            {
+                this.itemGroupId = Arguments.GetString("itemGroupId");
+                this.groupName = Arguments.GetString("groupName");
+            } catch(Exception e) { }
+
         }
 
         ListView inventoryItemsListView;
@@ -31,6 +42,13 @@ namespace imbentaryo_client.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.fragment_items_view, container, false);
+
+            // change view title heading so that user will know if specific group is selected
+            if (!string.IsNullOrEmpty(groupName))
+            {
+                TextView heading = view.FindViewById<TextView>(Resource.Id.heading);
+                heading.Text = this.groupName + " Items Inventory";
+            }
 
             this.inventoryItemsListView = view.FindViewById<ListView>(Resource.Id.inventoryItemsListView);
             this.inventoryItemsListView.ItemClick += this.ItemInventory_Click;
@@ -44,7 +62,9 @@ namespace imbentaryo_client.Fragments
 
             // call api
             ItemService service = new ItemService();
-            List<ItemAPIModel> itemAPIModels =  await service.GetItems();
+
+            List<ItemAPIModel> itemAPIModels =  await service.GetItems(itemGroupId);
+
             this.items = ModelConverter.ConvertToItem(itemAPIModels);
 
             // set up adapter

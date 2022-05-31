@@ -34,7 +34,19 @@ namespace imbentaryo_client.Fragments
 
             this.itemGroupsListView = view.FindViewById<ListView>(Resource.Id.itemGroupsListView);
 
+            // configure listener itemclick
+            this.itemGroupsListView.ItemClick += this.ItemGroup_Click;
+
             return view;
+        }
+
+        private void ItemGroup_Click(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            string itemGroupId = this.itemGroups[e.Position].Id;
+            string name = this.itemGroups[e.Position].Name;
+
+            // call items list view fragment
+            ((MainActivity)this.Activity).StartItemInventoriesOfGroup(itemGroupId, name);
         }
 
         public override async void OnResume()
