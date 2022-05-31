@@ -36,10 +36,26 @@ namespace imbentaryo_client.Fragments
 
             // configure listener itemclick
             this.itemGroupsListView.ItemClick += this.ItemGroup_Click;
+            this.itemGroupsListView.ItemLongClick += this.ItemGroup_LongClick;
 
             return view;
         }
 
+        /*
+         * Long click of a row of an item group will allow for
+         * editing/updating functino
+         */
+        private void ItemGroup_LongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            string itemGroupId = this.itemGroups[e.Position].Id;
+            ((MainActivity)this.Activity).StartItemGroupDetailView(itemGroupId);
+
+        }
+
+        /*
+         * Single click will open the inventoried items of an item group
+         * 
+         */
         private void ItemGroup_Click(object sender, AdapterView.ItemClickEventArgs e)
         {
             string itemGroupId = this.itemGroups[e.Position].Id;

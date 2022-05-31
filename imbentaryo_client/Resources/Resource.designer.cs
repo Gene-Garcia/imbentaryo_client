@@ -3690,13 +3690,13 @@ namespace imbentaryo_client
 			public const int customPanel = 2131230810;
 			
 			// aapt resource value: 0x7F08005B
-			public const int dateAdded = 2131230811;
+			public const int decor_content_parent = 2131230811;
 			
 			// aapt resource value: 0x7F08005C
-			public const int decor_content_parent = 2131230812;
+			public const int default_activity_button = 2131230812;
 			
 			// aapt resource value: 0x7F08005D
-			public const int default_activity_button = 2131230813;
+			public const int deleteGroupBtn = 2131230813;
 			
 			// aapt resource value: 0x7F08005E
 			public const int design_bottom_sheet = 2131230814;

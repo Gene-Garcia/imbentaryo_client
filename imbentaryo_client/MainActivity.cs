@@ -189,7 +189,14 @@ namespace imbentaryo_client
          */
         public void StartItemGroupDetailView(string groupId)
         {
+            AndroidX.Fragment.App.Fragment fragment = new FragmentItemGroupDetailsView();
 
+            // argument
+            Bundle args = new Bundle();
+            args.PutString("groupId", groupId);
+            fragment.Arguments = args;
+
+            this.ChangeFragment(fragment);
         }
 
         /*
