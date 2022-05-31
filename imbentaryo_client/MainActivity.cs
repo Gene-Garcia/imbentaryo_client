@@ -131,11 +131,13 @@ namespace imbentaryo_client
                 fragment = new FragmentItemGroupsView();
             }
 
-            var tx = this.SupportFragmentManager.BeginTransaction();
-            tx.Replace(Resource.Id.fragmentContainer, fragment);
-            // add the transaction to the backstack to allow users to navigate back
-            tx.AddToBackStack(null);
-            tx.Commit();
+            //var tx = this.SupportFragmentManager.BeginTransaction();
+            //tx.Replace(Resource.Id.fragmentContainer, fragment);
+            //// add the transaction to the backstack to allow users to navigate back
+            //tx.AddToBackStack(null);
+            //tx.Commit();
+
+            this.ChangeFragment(fragment);
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             drawer.CloseDrawer(GravityCompat.Start);
@@ -147,6 +149,15 @@ namespace imbentaryo_client
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public void ChangeFragment(AndroidX.Fragment.App.Fragment fragment)
+        {
+            var tx = this.SupportFragmentManager.BeginTransaction();
+            tx.Replace(Resource.Id.fragmentContainer, fragment);
+            // add the transaction to the backstack to allow users to navigate back
+            tx.AddToBackStack(null);
+            tx.Commit();
         }
 
         /*
@@ -170,6 +181,10 @@ namespace imbentaryo_client
             tx.Commit();
         }
 
+        /*
+         * Shows details of a specific group
+         * 
+         */
         public void StartItemGroupDetailView(string groupId)
         {
 
@@ -177,7 +192,8 @@ namespace imbentaryo_client
 
         /*
          * Start FragmentItemsView with a payload/bundle/parameter of
-         * which item group only to show
+         * which item group only to show. Triggered by selecting the 
+         * item-groups view buttons
          */
         public void StartItemInventoriesOfGroup(string groupId)
         {
