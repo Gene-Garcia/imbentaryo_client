@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/container_padding">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/groupNameContainer"
+        android:layout_marginVertical="@dimen/input_group_spacing">
+
+        <EditText
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/groupNameEditText" 
+            android:textColor="#212121"/>
+
+        <TextView
+            android:text="Group Name"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_below="@id/groupNameEditText"
+            android:layout_centerHorizontal="true"/>    
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/groupNameContainer"
+        android:id="@+id/remarksContainer"
+        android:layout_marginVertical="@dimen/input_group_spacing">
+
+        <TextView
+            android:text="Remarks"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/textView2" />
+
+        <EditText
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:id="@+id/remarksEditText"
+            android:layout_below="@+id/textView2"
+            android:background="@drawable/border"
+            android:textColor="#212121"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:text="Save Update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/saveUpdateBtn"
+        android:layout_below="@+id/remarksContainer"
+        android:layout_alignParentEnd="true"
+        android:layout_marginVertical="@dimen/input_group_spacing"/>
+
+    <TextView
+        android:text="Added on"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateAdded"
+        android:layout_below="@+id/saveUpdateBtn"
+        android:layout_marginVertical="@dimen/input_group_spacing"
+        android:layout_alignParentEnd="true"/>
+
+
+
+</RelativeLayout>
