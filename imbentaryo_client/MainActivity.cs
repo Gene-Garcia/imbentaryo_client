@@ -174,11 +174,13 @@ namespace imbentaryo_client
             args.PutString("itemId", itemId);
             fragment.Arguments = args;
 
-            var tx = this.SupportFragmentManager.BeginTransaction();
-            tx.Replace(Resource.Id.fragmentContainer, fragment);
-            // add the transaction to the backstack to allow users to navigate back
-            tx.AddToBackStack(null);
-            tx.Commit();
+            this.ChangeFragment(fragment);
+
+            //var tx = this.SupportFragmentManager.BeginTransaction();
+            //tx.Replace(Resource.Id.fragmentContainer, fragment);
+            //// add the transaction to the backstack to allow users to navigate back
+            //tx.AddToBackStack(null);
+            //tx.Commit();
         }
 
         /*
@@ -195,9 +197,17 @@ namespace imbentaryo_client
          * which item group only to show. Triggered by selecting the 
          * item-groups view buttons
          */
-        public void StartItemInventoriesOfGroup(string groupId)
+        public void StartItemInventoriesOfGroup(string groupId, string groupName)
         {
+            AndroidX.Fragment.App.Fragment fragment = new FragmentItemsView();
 
+            // configure argument
+            Bundle args = new Bundle();
+            args.PutString("itemGroupId", groupId);
+            args.PutString("groupName", groupName);
+            fragment.Arguments = args;
+
+            this.ChangeFragment(fragment);
         }
     }
 }
