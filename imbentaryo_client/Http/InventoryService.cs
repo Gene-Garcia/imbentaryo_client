@@ -4,17 +4,20 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using imbentaryo_client.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace imbentaryo_client.Http
 {
     internal class InventoryService : Service
     {
-        private const string HIGH_PATH = "/item";
+        private const string HIGH_PATH = "/inventory";
         private string uri;
 
         public InventoryService() : base()
@@ -22,9 +25,31 @@ namespace imbentaryo_client.Http
             this.uri = END_POINT + HIGH_PATH;
         }
 
-        public async void UpdateItemInventory()
+        public async Task<HttpMessage> UpdateItemInventory(ItemUpdateModel item, InventoryUpdateModel inventory)
         {
+            HttpMessage message = new HttpMessage();
 
+            using(this.client= new System.Net.Http.HttpClient())
+            {
+                Uri uri = new Uri(this.uri + "/update/item-inventory");
+
+                // serialize
+                string jsonItem = JsonConvert.SerializeObject(new {item, inventory});
+
+                // header
+                StringContent content = new StringContent(jsonItem, Encoding.UTF8, "application/json");
+
+                // request
+                HttpResponseMessage response = await client.PatchAsync(uri, content);
+
+                string rawMessage = await response.Content.ReadAsStringAsync();
+
+                message = JsonConvert.DeserializeObject<HttpMessage>(rawMessage);
+
+                message.StatusCode = response.StatusCode.ToString();
+            }
+
+            return message;
         }
     }
 
