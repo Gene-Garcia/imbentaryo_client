@@ -56,13 +56,27 @@ namespace imbentaryo_client.Fragments
             throw new NotImplementedException();
         }
 
-        private void SaveUpdate_Click(object sender, EventArgs e)
+        private async void SaveUpdate_Click(object sender, EventArgs e)
         {
             if (this.Validate())
             {
+                // update this.group model
+                this.group.Name = this.groupNameEditText.Text.Trim();
+                this.group.Remarks = this.remarksEditText.Text.Trim();
+
                 ItemGroupService service = new ItemGroupService();
 
-                Toast.MakeText(this.Activity, "Success", ToastLength.Short).Show();
+                HttpMessage message = await service.UpdateItemGroup(this.group);
+
+                Toast.MakeText(this.Activity, message.StatusCode + ". " + message.Message, ToastLength.Long).Show();
+
+                if (message.StatusCode == System.Net.HttpStatusCode.NotFound.ToString())
+                {
+                    // not found
+                    // this current group might have been deleted during this time
+                    // so go back to item groups view
+                    ((MainActivity)this.Activity).GoBackToItemGroups();
+                }
             }
         }
 

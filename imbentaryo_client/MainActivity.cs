@@ -216,6 +216,13 @@ namespace imbentaryo_client
 
             this.ChangeFragment(fragment);
         }
+
+        public void GoBackToItemGroups()
+        {
+            AndroidX.Fragment.App.Fragment fragment = new FragmentItemGroupsView();
+
+            this.ChangeFragment(fragment);
+        }
     }
 }
 
