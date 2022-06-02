@@ -201,7 +201,7 @@ namespace imbentaryo_client
 
         /*
          * Start FragmentItemsView with a payload/bundle/parameter of
-         * which item group only to show. Triggered by selecting the 
+         * which items of item group only to show. Triggered by selecting the 
          * item-groups view buttons
          */
         public void StartItemInventoriesOfGroup(string groupId, string groupName)

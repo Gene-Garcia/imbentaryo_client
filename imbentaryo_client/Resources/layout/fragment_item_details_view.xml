@@ -168,7 +168,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/saveUpdateBtn"
-            android:layout_below="@+id/itemDateAdded"/>
+            android:layout_below="@+id/itemDateAdded"
+            android:layout_alignParentEnd="true"/>
+
+        <Button
+            android:text="DELETE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteBtn"
+            android:layout_below="@id/itemDateAdded"
+            android:layout_toLeftOf="@id/saveUpdateBtn"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#EFEFEF"
+            android:textColor="#413F42"/>
+            
 
     </RelativeLayout>
 

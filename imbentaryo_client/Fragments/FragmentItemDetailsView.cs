@@ -34,7 +34,6 @@ namespace imbentaryo_client.Fragments
         EditText itemRemarksEditText;
         TextView inventoryUpdateDate;
         TextView itemDateAdded;
-        Button saveUpdateBtn;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -55,9 +54,11 @@ namespace imbentaryo_client.Fragments
             this.itemRemarksEditText = view.FindViewById<EditText>(Resource.Id.itemRemarksEditText);
             this.inventoryUpdateDate = view.FindViewById<TextView>(Resource.Id.inventoryUpdateDate);
             this.itemDateAdded = view.FindViewById<TextView>(Resource.Id.itemDateAdded);
-            this.saveUpdateBtn = view.FindViewById<Button>(Resource.Id.saveUpdateBtn);
+            Button saveUpdateBtn = view.FindViewById<Button>(Resource.Id.saveUpdateBtn);
+            Button deleteBtn = view.FindViewById<Button>(Resource.Id.deleteBtn);
 
-            this.saveUpdateBtn.Click += this.SaveUpdate_Click;
+            saveUpdateBtn.Click += this.SaveUpdate_Click;
+            deleteBtn.Click += this.Delete_Click;
 
             return view;
         }
@@ -191,6 +192,31 @@ namespace imbentaryo_client.Fragments
                     ((MainActivity)this.Activity).ChangeFragment(new FragmentItemsView());
                 }
             }
+        }
+
+        private async void Delete_Click(object sender, EventArgs e)
+        {
+            Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Activity);
+            AlertDialog alert = dialog.Create();
+            alert.SetTitle("Confirm Irreversible Action");
+            alert.SetMessage("Are you sure in deleting this item? Deleting this item will also delete its inventory record.");
+
+            alert.SetButton("CONFIRM", async (c, ev) =>
+            {
+                // OK
+                // Make api request
+                ItemService service = new ItemService();
+
+                HttpMessage message = await service.DeleteItemInventory(this.itemInventory.Item.Id);
+
+                Toast.MakeText(this.Activity, message.StatusCode + ". " + message.Message, ToastLength.Long).Show();
+
+                // regardless of status code, always redirect back to item inventory view for this current item group
+                ((MainActivity)this.Activity).StartItemInventoriesOfGroup(this.itemInventory.Item.ItemGroup.Id, this.itemInventory.Item.ItemGroup.Name);
+            });
+
+            alert.SetButton2("CANCEL", (c, ev) => { });
+            alert.Show();
         }
     }
 }

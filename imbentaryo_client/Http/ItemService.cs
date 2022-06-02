@@ -100,6 +100,27 @@ namespace imbentaryo_client.Http
 
             return item;
         }
+
+        public async Task<HttpMessage> DeleteItemInventory(string itemId)
+        {
+            HttpMessage message = new HttpMessage();
+
+            using (this.client = new HttpClient())
+            {
+                Uri uri = new Uri(this.uri + "/delete/" + itemId);
+
+                // request
+                HttpResponseMessage response = await this.client.DeleteAsync(uri);
+
+                string rawMessage = await response.Content.ReadAsStringAsync();
+
+                message = JsonConvert.DeserializeObject<HttpMessage>(rawMessage);
+
+                message.StatusCode = response.StatusCode.ToString();
+            }
+
+            return message;
+        }
     }
 
     /*
