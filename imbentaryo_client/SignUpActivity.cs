@@ -4,6 +4,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using imbentaryo_client.Http;
+using imbentaryo_client.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,12 +43,22 @@ namespace imbentaryo_client
             StartActivity(intent);
         }
 
-        private void SignUp_Click(object sender, EventArgs e)
+        private async void SignUp_Click(object sender, EventArgs e)
         {
             if (this.Validate())
             {
-                Intent intent = new Intent(this, typeof(LoginActivity));
-                StartActivity(intent);
+                AccountService service = new AccountService();
+
+                HttpMessage message = await service.SignUpUser(usernameEditText.Text.Trim(), passwordEditText.Text.Trim());
+
+                Toast.MakeText(this, message.Message, ToastLength.Short).Show();
+
+                if (message.StatusCode == System.Net.HttpStatusCode.Created.ToString())
+                {
+                    Intent intent = new Intent(this, typeof(LoginActivity));
+                    StartActivity(intent);
+                }
+                
             }
         }
 

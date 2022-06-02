@@ -69,6 +69,7 @@
     <Compile Include="Fragments\FragmentItemGroupDetailsView.cs" />
     <Compile Include="Fragments\FragmentItemGroupsView.cs" />
     <Compile Include="Fragments\FragmentItemsView.cs" />
+    <Compile Include="Http\AccountService.cs" />
     <Compile Include="Http\InventoryService.cs" />
     <Compile Include="Http\ItemGroupService.cs" />
     <Compile Include="Http\ItemService.cs" />
