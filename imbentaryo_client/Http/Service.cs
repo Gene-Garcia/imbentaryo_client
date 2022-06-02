@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using imbentaryo_client.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,19 @@ namespace imbentaryo_client.Http
         public Service()
         {
             
+        }
+
+        /*
+         * This service function handles the configuration
+         * of the authorization bearer token. So that every request to
+         * the servier will send the user account id
+         * 
+         */
+        public void ConfigureAuthorization()
+        {
+            string userAccountId = new UserSession().GetAccountId();
+
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "YourOauthtoken");
         }
     }
 }

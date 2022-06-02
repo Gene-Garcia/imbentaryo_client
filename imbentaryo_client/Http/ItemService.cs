@@ -31,6 +31,8 @@ namespace imbentaryo_client.Http
 
             using(this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/add");
 
                 // serialize item model to json content
@@ -58,6 +60,8 @@ namespace imbentaryo_client.Http
 
             using (this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri;
                 if (string.IsNullOrEmpty(itemGroupId))
                 {
@@ -88,6 +92,8 @@ namespace imbentaryo_client.Http
 
             using (this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/one/" + itemId);
 
                 HttpResponseMessage response = await client.GetAsync(uri);
@@ -107,6 +113,8 @@ namespace imbentaryo_client.Http
 
             using (this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/delete/" + itemId);
 
                 // request

@@ -41,4 +41,15 @@
 		</menu>
     </item>
 
+	<item android:title="Account">
+		<menu>
+			<group android:checkableBehavior="single">
+				<item
+				android:id="@+id/nav_sign_out"
+				android:icon="@drawable/ic_menu_camera"
+				android:title="Sign Out" />
+			</group>
+		</menu>
+	</item>
+
 </menu>

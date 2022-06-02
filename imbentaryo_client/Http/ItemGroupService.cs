@@ -31,6 +31,8 @@ namespace imbentaryo_client.Http
 
             using (this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/all");
 
                 HttpResponseMessage response = await client.GetAsync(uri);
@@ -51,6 +53,8 @@ namespace imbentaryo_client.Http
 
             using(this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/add");
 
                 // convert to json object
@@ -78,6 +82,8 @@ namespace imbentaryo_client.Http
 
             using (this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/one/" + groupId);
 
                 HttpResponseMessage response = await client.GetAsync(uri);
@@ -97,6 +103,8 @@ namespace imbentaryo_client.Http
 
             using(this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/update");
 
                 // convert to json object
@@ -124,6 +132,8 @@ namespace imbentaryo_client.Http
 
             using(this.client = new HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/delete/" + groupId);
 
                 // request

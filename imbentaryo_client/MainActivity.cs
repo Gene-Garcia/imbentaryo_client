@@ -85,7 +85,7 @@ namespace imbentaryo_client
 
                 // fragments configuration - AndroidX
                 var tx = this.SupportFragmentManager.BeginTransaction();
-                tx.Add(Resource.Id.fragmentContainer, new FragmentAddItem());
+                tx.Add(Resource.Id.fragmentContainer, new FragmentItemsView());
                 tx.Commit();
             }
         }

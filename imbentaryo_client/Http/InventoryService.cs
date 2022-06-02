@@ -31,6 +31,8 @@ namespace imbentaryo_client.Http
 
             using(this.client= new System.Net.Http.HttpClient())
             {
+                this.ConfigureAuthorization();
+
                 Uri uri = new Uri(this.uri + "/update/item-inventory");
 
                 // serialize
