@@ -53,7 +53,32 @@ namespace imbentaryo_client.Fragments
 
         private void DeleteGroup_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Activity);
+            AlertDialog alert = dialog.Create();
+            alert.SetTitle("Confirm Irreversible Action");
+            alert.SetMessage("Are you sure in deleting this group? Deleting this group will delete items as well as their inventory records.");
+
+            alert.SetButton("CONFIRM", async (c, ev) =>
+            {
+                // OK
+                // Make api request
+                ItemGroupService service = new ItemGroupService();
+
+                HttpMessage message = await service.DeleteItemGroup(this.group.Id);
+
+                Toast.MakeText(this.Activity, message.StatusCode + ". " + message.Message, ToastLength.Long).Show();
+
+                // regardless of status code, always redirect back
+                ((MainActivity)this.Activity).GoBackToItemGroups();
+                
+            });
+
+            alert.SetButton2("CANCEL", (c, ev) => 
+            {
+                // do nothing
+            });
+
+            alert.Show();
         }
 
         private async void SaveUpdate_Click(object sender, EventArgs e)
