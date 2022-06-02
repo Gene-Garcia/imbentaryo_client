@@ -57,7 +57,12 @@ namespace imbentaryo_client
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            if (true) // if session/shared preferences is true
+            // This will serve as our session
+            ISharedPreferences session = Application.Context.GetSharedPreferences("UserSession", FileCreationMode.Private);
+            string accountId = session.GetString("accountId", String.Empty);
+            string username = session.GetString("username", String.Empty);
+
+            if (string.IsNullOrEmpty(accountId) || string.IsNullOrEmpty(username))
             {
                 Intent intent = new Intent(this, typeof(LoginActivity));
                 StartActivity(intent);
@@ -83,6 +88,35 @@ namespace imbentaryo_client
                 tx.Add(Resource.Id.fragmentContainer, new FragmentAddItem());
                 tx.Commit();
             }
+        }
+
+        protected override void OnRestart()
+        {
+            base.OnRestart();
+
+            // check for shared preference if user is still in session
+            // This will serve as our session
+            ISharedPreferences pref = Application.Context.GetSharedPreferences("UserSession", FileCreationMode.Private);
+            string accountId = pref.GetString("accountId", String.Empty);
+            string username = pref.GetString("username", String.Empty);
+
+            if (string.IsNullOrEmpty(accountId) || string.IsNullOrEmpty(username))
+            {
+                Intent intent = new Intent(this, typeof(LoginActivity));
+                StartActivity(intent);
+            }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            // clear shared preferences
+            ISharedPreferences session = Application.Context.GetSharedPreferences("UserSession", FileCreationMode.Private);
+            ISharedPreferencesEditor edit = session.Edit();
+            edit.PutString("accountId", String.Empty);
+            edit.PutString("username", String.Empty);
+            edit.Apply();
         }
 
         public override void OnBackPressed()

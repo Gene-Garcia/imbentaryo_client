@@ -33,6 +33,14 @@ namespace imbentaryo_client
 
             usernameEditText = FindViewById<EditText>(Resource.Id.usernameEditText);
             passwordEditText = FindViewById<EditText>(Resource.Id.passwordEditText);
+
+            // clear stored preference/session so that when the login view opens its a fresh start
+            // or so that when the user clicks back button
+            ISharedPreferences session = Application.Context.GetSharedPreferences("UserSession", FileCreationMode.Private);
+            ISharedPreferencesEditor edit = session.Edit();
+            edit.PutString("accountId", String.Empty);
+            edit.PutString("username", String.Empty);
+            edit.Apply();
         }
 
         private void SignUpLink_Click(object sender, EventArgs e)
@@ -47,12 +55,18 @@ namespace imbentaryo_client
             {
                 AccountService service = new AccountService();
 
-                HttpMessage message = await service.LoginUser(usernameEditText.Text.Trim(), passwordEditText.Text.Trim());
+                LoginModel loginModel = await service.LoginUser(usernameEditText.Text.Trim(), passwordEditText.Text.Trim());
 
-                Toast.MakeText(this, message.Message, ToastLength.Short).Show();
+                Toast.MakeText(this, loginModel.Message, ToastLength.Short).Show();
 
-                if (message.StatusCode == System.Net.HttpStatusCode.OK.ToString())
+                if (loginModel.StatusCode == System.Net.HttpStatusCode.OK.ToString())
                 {
+                    ISharedPreferences session = Application.Context.GetSharedPreferences("UserSession", FileCreationMode.Private);
+                    ISharedPreferencesEditor edit = session.Edit();
+                    edit.PutString("accountId", loginModel.AccountId);
+                    edit.PutString("username", loginModel.Username);
+                    edit.Apply();
+
                     Intent intent = new Intent(this, typeof(MainActivity));
                     StartActivity(intent);
                 }            

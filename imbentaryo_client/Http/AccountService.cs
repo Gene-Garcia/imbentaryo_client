@@ -26,9 +26,9 @@ namespace imbentaryo_client.Http
             this.uri = END_POINT + HIGH_PATH;
         }
 
-        public async Task<HttpMessage> LoginUser(string username, string password)
+        public async Task<LoginModel> LoginUser(string username, string password)
         {
-            HttpMessage message = new HttpMessage();
+            LoginModel message = new LoginModel();
 
             using (this.client = new HttpClient())
             {
@@ -45,7 +45,7 @@ namespace imbentaryo_client.Http
 
                 string rawMessage = await response.Content.ReadAsStringAsync();
 
-                message = JsonConvert.DeserializeObject<HttpMessage>(rawMessage);
+                message = JsonConvert.DeserializeObject<LoginModel>(rawMessage);
 
                 message.StatusCode = response.StatusCode.ToString();
             }
@@ -55,7 +55,7 @@ namespace imbentaryo_client.Http
 
         public async Task<HttpMessage> SignUpUser(string username, string password)
         {
-            HttpMessage message = new HttpMessage();
+            HttpMessage loginModel = new HttpMessage();
 
             using (this.client = new HttpClient())
             {
@@ -72,13 +72,32 @@ namespace imbentaryo_client.Http
 
                 string rawMessage = await response.Content.ReadAsStringAsync();
 
-                message = JsonConvert.DeserializeObject<HttpMessage>(rawMessage);
+                loginModel = JsonConvert.DeserializeObject<HttpMessage>(rawMessage);
 
-                message.StatusCode = response.StatusCode.ToString();
+                loginModel.StatusCode = response.StatusCode.ToString();
             }
 
-            return message;
+            return loginModel;
         }
 
+    }
+    
+    /*
+     * A view model for the login that will hold the account id,
+     * username, status code, and message after a success
+     * login
+     */
+    internal class LoginModel
+    {
+        [JsonProperty("account_id")]
+        public string AccountId { get; set; }
+
+        [JsonProperty("username")]
+        public string Username { get; set; }
+
+        public string StatusCode { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
     }
 }
