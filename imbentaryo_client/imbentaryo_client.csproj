@@ -73,6 +73,7 @@
     <Compile Include="Http\ItemGroupService.cs" />
     <Compile Include="Http\ItemService.cs" />
     <Compile Include="Http\Service.cs" />
+    <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\HttpMessage.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Models\Utilities\ModelConverter.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignUpActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -190,6 +192,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_item_group_details_view.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_login.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_sign_up.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

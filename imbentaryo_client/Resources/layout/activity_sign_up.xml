@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/container_padding">
+
+    <RelativeLayout
+        android:layout_marginVertical="@dimen/account_view_spacing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        
+        <TextView
+            android:text="User Sign Up"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/signUp"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/account_view_spacing"/>
+
+        <TextView
+            android:text="Username"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/textView1"
+            android:layout_below="@+id/signUp"/>
+
+        <EditText
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/usernameEditText"
+            android:layout_marginBottom="@dimen/account_view_spacing"
+            android:layout_below="@+id/textView1"/>
+
+        <TextView
+            android:text="Password"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" 
+            android:layout_below="@+id/usernameEditText"/>
+
+        <EditText
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passwordEditText" 
+            android:layout_below="@+id/textView2"
+            android:layout_marginBottom="@dimen/account_view_spacing"/>
+
+        <TextView
+            android:text="Confirm Password"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" 
+            android:layout_below="@+id/passwordEditText"/>
+
+        <EditText
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/confirmPasswordEditText" 
+            android:layout_below="@+id/textView4"
+            android:layout_marginBottom="@dimen/account_view_spacing"/>
+
+        <Button
+            android:text="Sign Up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/signUpBtn"
+            android:layout_below="@+id/confirmPasswordEditText"
+            android:layout_marginBottom="@dimen/account_view_spacing"/>
+
+        <TextView
+            android:text="Already have an account"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/loginLink"
+            android:layout_below="@+id/signUpBtn"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>
