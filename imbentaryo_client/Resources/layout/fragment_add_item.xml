@@ -1,160 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/container_padding">
 
-    <TextView
-        android:text="Add Item"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:id="@+id/title" />
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:id="@+id/inputGroupTitle"
-        android:layout_marginVertical="@dimen/input_group_spacing">
+        android:layout_height="match_parent">
 
         <TextView
-            android:text="Item Name"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Add Item"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="25px"
             android:minHeight="25px"
-            android:id="@+id/textView1" />
+            android:id="@+id/title" />
 
-        <EditText
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/itemNameEditText"
-            android:layout_below="@id/textView1"
-            android:inputType="text" />
+            android:layout_below="@+id/title"
+            android:id="@+id/inputGroupTitle"
+            android:layout_marginVertical="@dimen/input_group_spacing">
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/inputGroupTitle"
-        android:id="@+id/inputGroupItemGroup"
-        android:layout_marginVertical="@dimen/input_group_spacing">
-
-        <TextView
-            android:text="Item Group"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:id="@+id/textView2" />
-        
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="28dp"
-            android:id="@+id/itemGroupDropDown"
-            android:layout_below="@id/textView2"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_below="@id/inputGroupItemGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputGroupContainer">
-
-            <RelativeLayout
+            <TextView
+                android:text="Item Name"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:id="@+id/inputUnitPrice"
-                android:layout_marginVertical="@dimen/input_group_spacing"
-                android:layout_marginRight="15dp">
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/textView1" />
 
-                <TextView
-                    android:text="Unit Price"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="25px"
-                    android:minHeight="25px"
-                    android:id="@+id/textView5" />
-        
-                <EditText
-                    android:inputType="number"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/unitPriceEditText"
-                    android:layout_below="@id/textView5"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemNameEditText"
+                android:layout_below="@id/textView1"
+                android:inputType="text" />
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-            <RelativeLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/inputGroupTitle"
+            android:id="@+id/inputGroupItemGroup"
+            android:layout_marginVertical="@dimen/input_group_spacing">
+
+            <TextView
+                android:text="Item Group"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/inputUnitPrice"
-                android:id="@+id/inputGroupCount"
-                android:layout_marginVertical="@dimen/input_group_spacing">
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/textView2" />
+        
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:id="@+id/itemGroupDropDown"
+                android:layout_below="@id/textView2"/>
 
-                <TextView
-                    android:text="Number of Stock"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@id/inputGroupItemGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/inputGroupContainer">
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="25px"
-                    android:minHeight="25px"
-                    android:id="@+id/textView3" />
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/inputUnitPrice"
+                    android:layout_marginVertical="@dimen/input_group_spacing"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:text="Unit Price"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:id="@+id/textView5" />
         
-                <EditText
-                    android:inputType="number"
-                    android:layout_width="130dp"
+                    <EditText
+                        android:inputType="number"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/unitPriceEditText"
+                        android:layout_below="@id/textView5"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/stockCountEditText"
-                    android:layout_below="@id/textView3"/>
+                    android:layout_toRightOf="@id/inputUnitPrice"
+                    android:id="@+id/inputGroupCount"
+                    android:layout_marginVertical="@dimen/input_group_spacing">
 
-            </RelativeLayout>
+                    <TextView
+                        android:text="Number of Stock"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:id="@+id/textView3" />
+        
+                    <EditText
+                        android:inputType="number"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/stockCountEditText"
+                        android:layout_below="@id/textView3"/>
 
-    </RelativeLayout>
+                </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/inputGroupContainer"
-        android:id="@+id/inputGroupRemarks"
-        android:layout_marginVertical="@dimen/input_group_spacing">
+        </RelativeLayout>
 
-        <TextView
-            android:text="Remarks"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/inputGroupContainer"
+            android:id="@+id/inputGroupRemarks"
+            android:layout_marginVertical="@dimen/input_group_spacing">
+
+            <TextView
+                android:text="Remarks"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/textView4" />
+        
+            <EditText
+                android:inputType="textMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/remarksEditText" 
+                android:layout_below="@+id/textView4"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:text="Save Item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:id="@+id/textView4" />
-        
-        <EditText
-            android:inputType="textMultiLine"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/remarksEditText" 
-            android:layout_below="@+id/textView4"/>
+            android:id="@+id/addItemBtn"
+            android:layout_below="@id/inputGroupRemarks"
+            android:layout_marginVertical="@dimen/input_group_spacing"
+            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
-
-    <Button
-        android:text="Save Item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/addItemBtn"
-        android:layout_below="@id/inputGroupRemarks"
-        android:layout_marginVertical="@dimen/input_group_spacing"
-        android:layout_alignParentEnd="true"/>
-
-       
-</RelativeLayout>
+</androidx.core.widget.NestedScrollView>

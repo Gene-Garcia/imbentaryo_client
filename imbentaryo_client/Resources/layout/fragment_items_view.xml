@@ -6,7 +6,7 @@
     android:padding="@dimen/container_padding">
 
     <TextView
-        android:text="Inventory Items"
+        android:text="Inventoried Items"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

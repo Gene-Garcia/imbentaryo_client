@@ -1,74 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/container_padding">
 
-    <TextView
-        android:text="Add Item Group"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:id="@+id/textView1" />
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/itemGroupNameItemGroup"
-        android:layout_below="@id/textView1"
-        android:layout_marginVertical="@dimen/container_padding">
+        android:layout_height="match_parent">
 
         <TextView
-            android:text="Item Group Name"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/itemGroupNameEditText"
-            android:layout_below="@+id/textView2"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/itemGroupNameItemGroup"
-        android:id="@+id/inputGroupRemarks"
-        android:layout_marginVertical="@dimen/input_group_spacing">
-
-        <TextView
-            android:text="Remarks"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Add Item Group"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="25px"
             android:minHeight="25px"
-            android:id="@+id/textView4" />
-        
-        <EditText
-            android:inputType="textMultiLine"
-            android:gravity="top"
+            android:id="@+id/textView1" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:id="@+id/remarksEditText" 
-            android:layout_below="@+id/textView4"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/itemGroupNameItemGroup"
+            android:layout_below="@id/textView1"
+            android:layout_marginVertical="@dimen/container_padding">
+
+            <TextView
+                android:text="Item Group Name"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemGroupNameEditText"
+                android:layout_below="@+id/textView2"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemGroupNameItemGroup"
+            android:id="@+id/inputGroupRemarks"
+            android:layout_marginVertical="@dimen/input_group_spacing">
+
+            <TextView
+                android:text="Remarks"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/textView4" />
+        
+            <EditText
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:id="@+id/remarksEditText" 
+                android:layout_below="@+id/textView4"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:text="Save Item Group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addItemGroupBtn"
+            android:layout_below="@id/inputGroupRemarks"
+            android:layout_marginVertical="@dimen/input_group_spacing"
+            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
 
-    <Button
-        android:text="Save Item Group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/addItemGroupBtn"
-        android:layout_below="@id/inputGroupRemarks"
-        android:layout_marginVertical="@dimen/input_group_spacing"
-        android:layout_alignParentEnd="true"/>
-
-</RelativeLayout>
+</androidx.core.widget.NestedScrollView>
