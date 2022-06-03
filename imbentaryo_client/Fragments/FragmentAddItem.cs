@@ -69,11 +69,16 @@ namespace imbentaryo_client.Fragments
             // populate by making api request
             ItemGroupService igs = new ItemGroupService();
             List<ItemGroup> itemGroups = await igs.GetItemGroups();
+
+            if (itemGroups.Count < 1) Toast.MakeText(this.Activity, "No recorded item groups. Add new item groups by accessing Add Item Group on our side drawer. Item group is required in adding an item inventory.", ToastLength.Long).Show();
+
             foreach (ItemGroup itemGroup in itemGroups)
             {
                 groupNames.Add(itemGroup.Name);
                 groupIds.Add(itemGroup.Id);
             }
+
+
 
             // populate spinner
             ArrayAdapter spinnerAdapter = new ArrayAdapter<string>(this.Activity, Resource.Layout.support_simple_spinner_dropdown_item, this.groupNames);
