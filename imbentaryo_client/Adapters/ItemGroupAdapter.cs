@@ -23,7 +23,7 @@ namespace imbentaryo_client.Adapters
             this.activity = activity;
             this.itemGroups = itemGroups;
 
-            if (itemGroups.Count < 1) Toast.MakeText(activity, "No recorded item groups. Add new item groups by accessing Add Item Group on our side drawer.", ToastLength.Long).Show();
+            if (itemGroups.Count < 1) Toast.MakeText(activity, "No recorded item groups. Add new item groups by accessing our side drawer.", ToastLength.Long).Show();
         }
 
 

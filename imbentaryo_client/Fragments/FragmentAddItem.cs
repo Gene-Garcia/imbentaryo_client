@@ -70,7 +70,7 @@ namespace imbentaryo_client.Fragments
             ItemGroupService igs = new ItemGroupService();
             List<ItemGroup> itemGroups = await igs.GetItemGroups();
 
-            if (itemGroups.Count < 1) Toast.MakeText(this.Activity, "No recorded item groups. Add new item groups by accessing Add Item Group on our side drawer. Item group is required in adding an item inventory.", ToastLength.Long).Show();
+            if (itemGroups.Count < 1) Toast.MakeText(this.Activity, "No recorded item groups. Add new item groups by accessing our side drawer. Item group is required in adding an item.", ToastLength.Long).Show();
 
             foreach (ItemGroup itemGroup in itemGroups)
             {

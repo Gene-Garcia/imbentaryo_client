@@ -83,7 +83,7 @@ namespace imbentaryo_client.Fragments
             ItemGroupService itemGroupService = new ItemGroupService();
             this.itemGroups = await itemGroupService.GetItemGroups();
 
-            if (itemGroups.Count < 1) Toast.MakeText(this.Activity, "No recorded item groups. Add new item groups by accessing Add Item Group on our side drawer. Item group is required in adding an item inventory.", ToastLength.Long).Show();
+            if (itemGroups.Count < 1) Toast.MakeText(this.Activity, "No recorded item groups. Add new item groups by accessing our side drawer. Item group is required in adding an item.", ToastLength.Long).Show();
 
             // we must first mutate the itemGroups so that the item group of the current is the first in the list
             itemGroups.Remove(itemGroups.Where(m => m.Id == this.itemInventory.Item.GroupId).FirstOrDefault());

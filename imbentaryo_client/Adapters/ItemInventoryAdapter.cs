@@ -23,7 +23,7 @@ namespace imbentaryo_client.Adapters
             this.activity = activity;
             this.items = items;
 
-            if (items.Count < 1) Toast.MakeText(activity, "No recorded inventoried items. Add item inventories by accessing Add Item on our side drawer or by clicking the floating add button below.", ToastLength.Long).Show();
+            if (items.Count < 1) Toast.MakeText(activity, "No recorded inventoried items. Add item inventories by accessing our side drawer or by clicking the floating button below.", ToastLength.Long).Show();
 
         }
 
