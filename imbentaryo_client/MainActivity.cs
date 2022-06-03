@@ -83,6 +83,11 @@ namespace imbentaryo_client
                 NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
                 navigationView.SetNavigationItemSelectedListener(this);
 
+                // configure navigation header
+                LinearLayout header = (LinearLayout)navigationView.GetHeaderView(0);
+                TextView navHeaderUsername = header.FindViewById<TextView>(Resource.Id.navHeaderUsername);
+                navHeaderUsername.Text = username;
+
                 // fragments configuration - AndroidX
                 var tx = this.SupportFragmentManager.BeginTransaction();
                 tx.Add(Resource.Id.fragmentContainer, new FragmentItemsView());
