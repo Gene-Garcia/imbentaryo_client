@@ -6,7 +6,7 @@
 	<group android:checkableBehavior="single">
 		<item
 			android:id="@+id/nav_home"
-			android:icon="@drawable/ic_menu_camera"
+			android:icon="@drawable/ic_home"
 			android:title="Home" />
 	</group>
 	
@@ -15,11 +15,11 @@
 			<group android:checkableBehavior="single">
 				<item
 					android:id="@+id/nav_items_view"
-					android:icon="@drawable/ic_menu_camera"
+					android:icon="@drawable/ic_items"
 					android:title="Inventoried Items" />
 				<item
 					android:id="@+id/nav_add_item"
-					android:icon="@drawable/ic_menu_gallery"
+					android:icon="@drawable/ic_add_item"
 					android:title="Add Item" />
 			</group>
 		</menu>
@@ -30,13 +30,13 @@
         <menu>
 			<group android:checkableBehavior="single">
 				<item
-					android:id="@+id/nav_add_item_group"
-					android:icon="@drawable/ic_menu_send"
-					android:title="Add Item Group" />
-				<item
 					android:id="@+id/nav_item_groups_view"
-					android:icon="@drawable/ic_menu_share"
+					android:icon="@drawable/ic_groups"
 					android:title="Item Groups" />
+				<item
+					android:id="@+id/nav_add_item_group"
+					android:icon="@drawable/ic_add_group"
+					android:title="Add Item Group" />
 			</group>
 		</menu>
     </item>
@@ -46,7 +46,7 @@
 			<group android:checkableBehavior="single">
 				<item
 				android:id="@+id/nav_sign_out"
-				android:icon="@drawable/ic_menu_camera"
+				android:icon="@drawable/ic_sign_out"
 				android:title="Sign Out" />
 			</group>
 		</menu>
