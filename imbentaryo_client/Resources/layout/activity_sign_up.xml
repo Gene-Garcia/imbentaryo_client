@@ -20,7 +20,8 @@
             android:minHeight="25px"
             android:id="@+id/signUp"
             android:gravity="center"
-            android:layout_marginBottom="@dimen/account_view_spacing"/>
+            android:layout_marginBottom="@dimen/account_view_spacing"
+            android:textColor="@color/colorPrimary"/>
 
         <TextView
             android:text="Username"
@@ -78,7 +79,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/signUpBtn"
             android:layout_below="@+id/confirmPasswordEditText"
-            android:layout_marginBottom="@dimen/account_view_spacing"/>
+            android:layout_marginBottom="@dimen/account_view_spacing"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:text="Already have an account"
