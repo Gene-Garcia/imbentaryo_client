@@ -54,6 +54,7 @@
         
         <EditText
             android:inputType="textMultiLine"
+            android:gravity="top"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:id="@+id/remarksEditText" 

@@ -172,6 +172,22 @@ namespace imbentaryo_client
             {
                 fragment = new FragmentItemGroupsView();
             }
+            else if (id == Resource.Id.nav_sign_out)
+            {
+                // clear shared preferences
+                ISharedPreferences session = Application.Context.GetSharedPreferences("UserSession", FileCreationMode.Private);
+                ISharedPreferencesEditor edit = session.Edit();
+                edit.PutString("accountId", String.Empty);
+                edit.PutString("username", String.Empty);
+                edit.Apply();
+
+                // Redirect to login view
+                Intent intent = new Intent(this, typeof(LoginActivity));
+                StartActivity(intent);
+
+                // so that no fragment will be opened
+                return true;
+            }
 
             //var tx = this.SupportFragmentManager.BeginTransaction();
             //tx.Replace(Resource.Id.fragmentContainer, fragment);

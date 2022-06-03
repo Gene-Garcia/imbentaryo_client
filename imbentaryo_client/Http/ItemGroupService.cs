@@ -111,7 +111,7 @@ namespace imbentaryo_client.Http
                 string jsonItem = JsonConvert.SerializeObject(group);
 
                 // add headers
-                StringContent content = new StringContent("", Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(jsonItem, Encoding.UTF8, "application/json");
 
                 // request
                 HttpResponseMessage response = await this.client.PatchAsync(uri, content);

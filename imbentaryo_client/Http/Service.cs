@@ -35,7 +35,7 @@ namespace imbentaryo_client.Http
         {
             string userAccountId = new UserSession().GetAccountId();
 
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "YourOauthtoken");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", userAccountId);
         }
     }
 }
