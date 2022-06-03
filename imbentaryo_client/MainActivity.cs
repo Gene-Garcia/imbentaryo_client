@@ -146,9 +146,12 @@ namespace imbentaryo_client
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            View view = (View) sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            //View view = (View) sender;
+            //Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
+            //    .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+
+            AndroidX.Fragment.App.Fragment fragment = new FragmentAddItem();
+            ChangeFragment(fragment);
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
