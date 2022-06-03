@@ -4715,10 +4715,13 @@ namespace imbentaryo_client
 			public const int ic_launcher = 2131558400;
 			
 			// aapt resource value: 0x7F0D0001
-			public const int ic_launcher_foreground = 2131558401;
+			public const int ic_launcher_background = 2131558401;
 			
 			// aapt resource value: 0x7F0D0002
-			public const int ic_launcher_round = 2131558402;
+			public const int ic_launcher_foreground = 2131558402;
+			
+			// aapt resource value: 0x7F0D0003
+			public const int ic_launcher_round = 2131558403;
 			
 			static Mipmap()
 			{
