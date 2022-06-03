@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using imbentaryo_client.Models;
+using imbentaryo_client.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace imbentaryo_client.Adapters
             //fill in your items
             itemName.Text = this.items[position].Item.Name;
             stockCount.Text = this.items[position].Quantity.ToString();
-            inventoryDate.Text = this.items[position].Updated;
+            inventoryDate.Text = DateHelper.ConvertToDateTime(this.items[position].Updated).ToString("MMM d, yyyy, ddd");
 
             return view;
         }

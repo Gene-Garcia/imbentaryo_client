@@ -8,6 +8,7 @@ using Android.Widget;
 using imbentaryo_client.Http;
 using imbentaryo_client.Models;
 using imbentaryo_client.Models.Utilities;
+using imbentaryo_client.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -98,12 +99,12 @@ namespace imbentaryo_client.Fragments
             itemNameEditText.Text = this.itemInventory.Item.Name;
 
             inventoryQuantityEditText.Text = this.itemInventory.Quantity.ToString();
-            inventoryUpdateDate.Text = "Updated last " + this.itemInventory.Updated;
+            inventoryUpdateDate.Text = "Updated last " + DateHelper.ConvertToDateTime(this.itemInventory.Updated).ToString("MMM d, yyyy, ddd");
 
             itemPriceEditText.Text = this.itemInventory.Item.UnitPrice.ToString();
 
             itemRemarksEditText.Text = this.itemInventory.Item.Remarks;
-            itemDateAdded.Text = "Item added on " + this.itemInventory.Item.DateAdded;
+            itemDateAdded.Text = "Item added last " + DateHelper.ConvertToDateTime(this.itemInventory.Item.DateAdded).ToString("MMM d, yyyy, ddd");
         }
 
         private void ItemGroup_ItemGroupSelected(object sender, AdapterView.ItemSelectedEventArgs e)
